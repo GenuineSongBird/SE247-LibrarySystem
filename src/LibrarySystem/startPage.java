@@ -3,7 +3,7 @@
  * Finds out what the user wants to do, then calls that class.
  * 
  * Team: Untitled: Nick Bautista, Tyson Medlin, Luis Canales
- * Main programmer of this class: Tyson Medlin
+ * Main programmer(s) of this class: Tyson Medlin,
  * Date: 10/24/2019
  */
 package LibrarySystem;
@@ -123,6 +123,8 @@ public class startPage {
 	
 	
 	//Helper Methods ----------------------------------------------------------------------------
+	//these are static so feel free to use these where ever they would help!
+	
 	//public static user getCurrentUser()
 	//{
 		
@@ -144,7 +146,7 @@ public class startPage {
 	}
 	public static String getLine()
 	{
-		String line = "---------------------";
+		String line = "\n---------------------";
 		return line;
 	}
 	public static String choiceSetup(String[] choices)
