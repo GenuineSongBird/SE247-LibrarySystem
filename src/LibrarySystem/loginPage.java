@@ -18,6 +18,10 @@ public class loginPage {
 		choice = startPage.getUserChoice(choices, choices.length);
 		getResponseForChoice(choice);
 	}
+	/* Gives this class's appropriate response given the users choice
+	 * @param the users choice in integer format
+	 * @returns none
+	 */
 	private void getResponseForChoice(int usersChoice)
 	{
 		Scanner key = new Scanner(System.in);
@@ -37,6 +41,10 @@ public class loginPage {
 		}
 		
 	}
+	/* Creates a new user account and adds to userDatabase. 
+	 * @param none
+	 * @returns none
+	 */
 	public void createNewUser()
 	{
 		boolean successfulCreation;
@@ -48,6 +56,10 @@ public class loginPage {
 			System.out.println("Account successfully created!\nYou are now logged in");
 		startPage.makeUserLookAtThisMessageLoop("This feature will be added once databases are ready");
 	}
+	/* allows the user to login to an account. True if successful, false if fails.
+	 * @param users password, users name
+	 * @returns boolean
+	 */
 	public boolean login( String password, String name)
 	{
 		startPage.makeUserLookAtThisMessageLoop("This feature will be added once databases are ready");

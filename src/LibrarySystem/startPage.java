@@ -50,6 +50,10 @@ public class startPage {
 		}
 		return Integer.valueOf(userChoice);
 	}
+	/* Gives this class's appropriate response given the users choice
+	 * @param the users choice in integer format
+	 * @returns none
+	 */
 	private static void getResponseForChoice(int usersChoice)
 	{
 		switch(usersChoice) {
@@ -93,17 +97,21 @@ public class startPage {
 	}
 	private static void browse()
 	{
-		makeUserLookAtThisMessageLoop("This feature will be added once databases are ready"); //forces user to read the message before continuing.
+		//makeUserLookAtThisMessageLoop("This feature will be added once databases are ready"); //forces user to read the message before continuing.
+		browsePage browse = new browsePage();
 	}
 	private static void viewFee()
 	{
 		if( isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
 		{ return; }
+		//user.viewFees();
 	}
 	private static void returnItem()
 	{
 		if( isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
 		{  return; }
+		System.out.println("Please enter the name of the item being returned");
+		System.out.println("Please enter the year of the item being returned");
 	}
 	private static void payFee()
 	{
@@ -130,7 +138,10 @@ public class startPage {
 		
 	//}
 	
-	//Returns date in String in this format: yyyy/dd/MM HH:mm:ss
+	/* Returns date in String in this format: yyyy/dd/MM HH:mm:ss
+	 * @param none
+	 * @returns the current date in this format: yyyy/dd/MM HH:mm:ss
+	 */
 	public static String getDate()
 	{
 		String date = "";
@@ -139,29 +150,49 @@ public class startPage {
 		date = (String)dateFormat.format(Date);
 		return date;
 	}
+	/* Gives the current name of the library system in same format.
+	 * @param none
+	 * @returns the current name of the library system with upper and lower brackets
+	 */
 	public static String getTitle()
 	{
 		String title = "---------------------\nUntitled Library System\n---------------------";
 		return title;
 	}
+	/* Prints a line of the same size each time.
+	 * @param none
+	 * @returns none
+	 */
 	public static String getLine()
 	{
 		String line = "\n---------------------";
 		return line;
 	}
+	/* displays a set of choices in a easy to read format 
+	 * @param an array of strings (choices for the user to pick from)
+	 * @returns the users integer choice
+	 */
 	public static String choiceSetup(String[] choices)
 	{
-		String choiceDialogue = "Please select a choice\n";
+		String choiceDialogue = "Please select a choice\n\n";
 		for(int i = 0; i < choices.length; i++)
 		{
 			choiceDialogue =  choiceDialogue + (i+1) + ". " + choices[i] + "\n";
 		}
 		return choiceDialogue;
 	}
+	/* Checks if the user is logged in. 
+	 * @param none
+	 * @returns true if user is logged in, false if otherwise
+	 */
 	public static boolean isUserLoggedIn()
 	{
 		return false;
 	}
+	/* Prevents an action from being performed if user is not logged in
+	 * @param none
+	 * @returns true if user is logged in, false if otherwise
+	 */
 	public static boolean isUserLoggedInLoop()
 	{
 		if( isUserLoggedIn() == false ) 
@@ -172,6 +203,10 @@ public class startPage {
 		}
 		return true;
 	}
+	/* Forces a user to acknowledge that they have read a message 
+	 * @param a message to display to the user
+	 * @returns none
+	 */
 	public static void makeUserLookAtThisMessageLoop( String message )
 	{
 		Scanner key = new Scanner(System.in);
