@@ -1,3 +1,11 @@
+/*
+ * This class inherits from baseUser class and uses the
+ * extended checkout behavior as their checkout length
+ *
+ * Team: Untitled: Nick Bautista, Tyson Medlin, Luis Canales
+ * Main programmer(s) of this class: Luis Canales 
+ * Date: 10/28/2019
+ */
 package LibrarySystem;
 
 
