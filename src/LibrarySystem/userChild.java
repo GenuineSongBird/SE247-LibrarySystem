@@ -1,3 +1,11 @@
+/*
+ * This class inherits from baseUser and is a child user class
+ * it has base user properties but has a limited checkoutBehavior
+ *
+ * Team: Untitled: Nick Bautista, Tyson Medlin, Luis Canales
+ * Main programmer(s) of this class: Luis Canales 
+ * Date: 10/28/2019
+ */
 package LibrarySystem;
 
 
