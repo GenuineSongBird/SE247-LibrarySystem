@@ -1,3 +1,4 @@
+package LibrarySystem;
 
 public class Magazine extends Item {
 private String publisher;
