@@ -24,17 +24,16 @@ public class userCreationPage {
 		System.out.println("Please enter your name");
 		name = key.nextLine();
 		System.out.println("Please enter your password for this account");
-		name = key.nextLine();
+		password = key.nextLine();
 		System.out.println("Please enter your address");
-		name = key.nextLine();
+		address = key.nextLine();
 		System.out.println("Please enter your phone number");
-		name = key.nextLine();
+		phoneNumber = key.nextLine();
 		System.out.println("Please enter your email");
-		name = key.nextLine();
+		email = key.nextLine();
 		System.out.println("Please enter the age");
-		name = key.nextLine();
-		//accountNumber = database.getFreshAccountNumber();
-		//database.addUser(...);
+		age = key.nextLine();
+		userDatabase.getInstance().createUser(name, Integer.valueOf(age), phoneNumber, address, email, password);
 		return true;
 	}
 }
