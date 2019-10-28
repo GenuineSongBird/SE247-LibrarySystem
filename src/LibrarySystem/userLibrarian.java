@@ -1,3 +1,11 @@
+/*
+ * This class inherits from baseUser and is a librarian user class
+ * it has access to different commands than a base user but base checkout behavior
+ *
+ * Team: Untitled: Nick Bautista, Tyson Medlin, Luis Canales
+ * Main programmer(s) of this class: Luis Canales 
+ * Date: 10/28/2019
+ */
 package LibrarySystem;
 
 
