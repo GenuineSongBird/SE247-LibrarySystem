@@ -34,7 +34,7 @@ public abstract class baseUser {
 	}
 	
 	public double addToFeeTotal(double fee) {
-		
+		return this.feeTotal;
 	}
 	
 	public void setCheckoutLimit(checkoutLimitBehavior clb) {
@@ -46,7 +46,7 @@ public abstract class baseUser {
 	}
 	
 	public double viewFees() {
-		
+		return this.feeTotal;
 	}
 	
 }
