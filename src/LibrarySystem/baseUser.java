@@ -1,3 +1,10 @@
+/*
+ * This class is the base user class which all user objects inherit from
+ * 
+ * Team: Untitled: Nick Bautista, Tyson Medlin, Luis Canales
+ * Main programmer(s) of this class: Luis Canales 
+ * Date: 10/28/2019
+ */
 package LibrarySystem;
 
 
