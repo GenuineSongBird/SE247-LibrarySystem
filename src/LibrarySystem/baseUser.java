@@ -81,4 +81,70 @@ public abstract class baseUser {
 		return this.feeTotal;
 	}
 	
+	//Accessors and Mutators for each method
+	
+	//Name 
+	public String getName() {
+		return name;
+	}
+
+	private void setName(String name) {
+		this.name = name;
+	}
+	
+	//Age
+	public int getAge() {
+		return age;
+	}
+
+	private void setAge(int age) {
+		this.age = age;
+	}
+
+	//Phone Number
+	public String getPhoneNum() {
+		return phoneNum;
+	}
+
+	private void setPhoneNum(String phoneNum) {
+		this.phoneNum = phoneNum;
+	}
+
+	//Address
+	public String getAddress() {
+		return address;
+	}
+
+	private void setAddress(String address) {
+		this.address = address;
+	}
+
+	//Email
+	public String getEmail() {
+		return email;
+	}
+
+	private void setEmail(String email) {
+		this.email = email;
+	}
+
+	//Account Number
+	public int getAccNum() {
+		return accNum;
+	}
+
+	private void setAccNum(int accNum) {
+		this.accNum = accNum;
+	}
+
+	//Fee Total
+	public double getFeeTotal() {
+		return feeTotal;
+	}
+
+	private void setFeeTotal(double feeTotal) {
+		this.feeTotal = feeTotal;
+	}
+	
+	
 }
