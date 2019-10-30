@@ -68,7 +68,7 @@ public abstract class baseUser {
 	 * Displays user information aside from password
 	 */
 	public void display() {
-		System.out.println("Name:			  "+ this.name +
+		System.out.println("Name:		"+ this.name +
 					"\nAge:			  "+ this.age +
 					"\nPhone Number:   "+ this.phoneNum +
 					"\nAddress		  "+ this.address +
