@@ -7,7 +7,6 @@ public class DVD extends Item {
 		super(title);
 	}
 	
-	public void display() {
-		
-	}
+	public String toString() {
+		return super.toString() + "\nStudio: " + this.studio;
 }

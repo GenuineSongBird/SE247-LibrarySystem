@@ -7,7 +7,7 @@ public class EBook extends Item {
 		super(title);
 	}
 	
-	public void display() {
-		
+	public String toString() {
+		return super.toString() + "\nAuthor: " + this.author;
 	}
 }

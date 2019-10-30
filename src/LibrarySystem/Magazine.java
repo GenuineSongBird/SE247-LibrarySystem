@@ -7,7 +7,7 @@ private String publisher;
 		super(title);
 	}
 	
-	public void display() {
-		
+public String toString() {
+		return super.toString() + "\nPublisher: " + this.publisher;
 	}
 }

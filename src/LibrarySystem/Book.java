@@ -11,7 +11,7 @@ public class Book extends Item {
 		
 	}
 	
-	public void display() {
-		
+	public String toString() {
+		return super.toString() + "Author: " + this.author;
 	}
 }
