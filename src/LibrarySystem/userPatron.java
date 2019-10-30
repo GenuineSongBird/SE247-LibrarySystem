@@ -20,7 +20,8 @@ public class userPatron extends baseUser {
 	}
 	
 	public void display() {
-		
+		System.out.println(this.name+" is a patron");
+		super.display();
 	}
 	
 }

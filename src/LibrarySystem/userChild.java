@@ -20,7 +20,8 @@ public class userChild extends baseUser {
 	}
 	
 	public void display() {
-		
+		System.out.println(this.name+" is a child");
+		super.display();
 	}
 	
 }
