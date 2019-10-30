@@ -8,7 +8,8 @@ public class AudioBook extends Item {
 		super(title);
 	}
 	
-	public void display() {
-		
+	public String display() {
+		String everything = "";
+		return everything;
 	}
 }

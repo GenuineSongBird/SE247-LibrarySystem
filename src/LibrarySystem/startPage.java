@@ -107,19 +107,48 @@ public class startPage {
 	{
 		if( isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
 		{ return; }
-		//user.viewFees();
+		String fees = String.valueOf(currentUser.getFeeTotal());
+		if(Double.valueOf(fees) == 0)
+			fees = "None";
+		else
+			fees = "$ " + fees;
+		makeUserLookAtThisMessageLoop("Fee Amount: "+ fees);
 	}
 	private static void returnItem()
 	{
 		if( isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
 		{  return; }
 		System.out.println("Please enter the name of the item being returned");
-		System.out.println("Please enter the year of the item being returned");
 	}
 	private static void payFee()
 	{
 		if( isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
 		{ return; }
+		Scanner key = new Scanner(System.in);
+		String fees = String.valueOf(currentUser.getFeeTotal());
+		if(Double.valueOf(fees) == 0)
+			System.out.println("Fee Amount: "+ "None");	
+		else
+			System.out.println("Fee Amount: $"+ fees );
+		if(fees.equalsIgnoreCase("None"))
+		{
+			makeUserLookAtThisMessageLoop("There are no fees to be paid.");
+			return;
+		}
+		else
+		{
+			String payThisMuch = "";
+			System.out.println("How much would you like to pay?");
+			payThisMuch = key.nextLine();
+			while (payThisMuch.matches("-?\\d+") == false)
+			{
+				System.out.println("Please enter a number for how much you would like to pay");
+				payThisMuch = key.nextLine();
+			}
+			Double resultingFee = Double.valueOf(Double.valueOf(fees) - Double.valueOf(payThisMuch));
+			System.out.println("$"+ payThisMuch + " payed off.\nAmount left: " + resultingFee);
+			makeUserLookAtThisMessageLoop("");
+		}
 	}
 	private static void viewHolds()
 	{
@@ -130,6 +159,7 @@ public class startPage {
 	{
 		if( isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
 		{ return; }
+		currentUser.viewWishList();
 	}
 	
 	

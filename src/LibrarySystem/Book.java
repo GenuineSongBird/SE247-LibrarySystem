@@ -11,7 +11,8 @@ public class Book extends Item {
 		
 	}
 	
-	public void display() {
-		
+	public String display() {
+		String everything = "";
+		return everything;
 	}
 }

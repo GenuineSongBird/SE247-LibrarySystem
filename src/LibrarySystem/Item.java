@@ -13,7 +13,8 @@ public abstract class Item {
 		this.title = aTitle;
 	}
 	
-	public void display() {
-		
+	public String display() {
+		String everything = "";
+		return everything;
 	}
 }

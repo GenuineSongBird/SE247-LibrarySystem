@@ -8,7 +8,7 @@
 package LibrarySystem;
 
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public abstract class baseUser {
 	protected String name;
@@ -18,7 +18,7 @@ public abstract class baseUser {
 	protected String email;
 	protected int accNum;
 	protected double feeTotal;
-	protected ArrayList<Item> wishlist;
+	LinkedList<Item> wishList = new LinkedList<Item>();
 	protected String password;
 	checkoutLimitBehavior CheckoutLimitBehavior;
 	
@@ -145,6 +145,14 @@ public abstract class baseUser {
 	private void setFeeTotal(double feeTotal) {
 		this.feeTotal = feeTotal;
 	}
-	
+	public void addToWishList(Item thisItem)
+	{
+		wishList.add(thisItem);
+	}
+	public void viewWishList()
+	{
+		for(int i = 0; i < wishList.size();i++)
+			System.out.println(wishList.get(i).display());
+	}
 	
 }

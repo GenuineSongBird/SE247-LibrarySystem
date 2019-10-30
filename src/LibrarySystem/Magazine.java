@@ -7,7 +7,8 @@ private String publisher;
 		super(title);
 	}
 	
-	public void display() {
-		
+	public String display() {
+		String everything = "";
+		return everything;
 	}
 }
