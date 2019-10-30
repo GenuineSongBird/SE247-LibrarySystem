@@ -15,7 +15,7 @@ public class ItemDatabase {
 		return iDatabase;
 	}
 
-	public void createItem(Item anItem) {
+	public void addItem(Item anItem) {
 		iDatabase.add(anItem);
 	}
 }	
