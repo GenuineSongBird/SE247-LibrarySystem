@@ -21,7 +21,8 @@ public class userAdmin extends baseUser {
 	}
 	
 	public void display() {
-		
+		System.out.println(this.name+" is an admin");
+		super.display();
 	}
 	
 }

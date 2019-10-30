@@ -20,7 +20,8 @@ public class userLibrarian extends baseUser{
 	}
 	
 	public void display() {
-		
+		System.out.println(this.name+" is a librarian");
+		super.display();
 	}
 	
 }
