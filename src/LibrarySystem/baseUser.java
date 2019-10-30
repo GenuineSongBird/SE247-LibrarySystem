@@ -22,7 +22,18 @@ public abstract class baseUser {
 	protected String password;
 	checkoutLimitBehavior CheckoutLimitBehavior;
 	
-	
+	/**
+	 * Base constructor for Library Users
+	 * 
+	 * @param aName
+	 * @param anAge
+	 * @param aPhoneNum
+	 * @param anAddress
+	 * @param anEmail
+	 * @param anAccNum
+	 * @param aFeeTotal
+	 * @param aPassword
+	 */
 	public baseUser(String aName, int anAge, String aPhoneNum,
 			String anAddress, String anEmail, int anAccNum, double aFeeTotal,
 			String aPassword)	{
@@ -37,19 +48,33 @@ public abstract class baseUser {
 	}
 	
 	public void checkoutLimit() {
-		
+		CheckoutLimitBehavior.checkoutLimit();
 	}
 	
 	public double addToFeeTotal(double fee) {
+		this.feeTotal += fee;
 		return this.feeTotal;
 	}
 	
+	/**
+	 * Sets the Checkout Limit Behavior equal to inputed behavior
+	 * @param clb
+	 */
 	public void setCheckoutLimit(checkoutLimitBehavior clb) {
-		
+		CheckoutLimitBehavior = clb;
 	}
 	
+	/**
+	 * Displays user information aside from password
+	 */
 	public void display() {
-		
+		System.out.println("Name:			  "+ this.name +
+					"\nAge:			  "+ this.age +
+					"\nPhone Number:   "+ this.phoneNum +
+					"\nAddress		  "+ this.address +
+					"\nEmail:		  "+ this.email +
+					"\nAccount Number: "+ this.accNum +
+					"\nFee Total:	  "+ this.feeTotal);
 	}
 	
 	public double viewFees() {
