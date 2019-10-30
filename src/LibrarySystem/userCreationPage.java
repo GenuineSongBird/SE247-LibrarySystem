@@ -20,21 +20,20 @@ public class userCreationPage {
 		String phoneNumber;
 		String email;
 		String age;
-		int accountNumber;
 		System.out.println("Please enter your name");
 		name = key.nextLine();
 		System.out.println("Please enter your password for this account");
-		name = key.nextLine();
+		password = key.nextLine();
 		System.out.println("Please enter your address");
-		name = key.nextLine();
+		address = key.nextLine();
 		System.out.println("Please enter your phone number");
-		name = key.nextLine();
+		phoneNumber = key.nextLine();
 		System.out.println("Please enter your email");
-		name = key.nextLine();
-		System.out.println("Please enter the age");
-		name = key.nextLine();
-		//accountNumber = database.getFreshAccountNumber();
-		//database.addUser(...);
+		email = key.nextLine();
+		System.out.println("Please enter your age");
+		age = key.nextLine();
+		baseUser thisUser = userDatabase.getInstance().createUser(name, Integer.valueOf(age), phoneNumber, address, email, password);
+		startPage.changeToCurrentUser(thisUser);
 		return true;
 	}
 }

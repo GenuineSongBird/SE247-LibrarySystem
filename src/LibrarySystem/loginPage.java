@@ -7,6 +7,7 @@
  * Date: 10/24/2019
  */
 package LibrarySystem;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class loginPage {
@@ -53,8 +54,8 @@ public class loginPage {
 		if(successfulCreation == false) {
 			System.out.println("Failure to create account");  return ;}
 		else
-			System.out.println("Account successfully created!\nYou are now logged in");
-		startPage.makeUserLookAtThisMessageLoop("This feature will be added once databases are ready");
+			System.out.println("Account successfully created!\nYou are now logged in!");
+		//startPage.makeUserLookAtThisMessageLoop("This feature will be added once databases are ready");
 	}
 	/* allows the user to login to an account. True if successful, false if fails.
 	 * @param users password, users name
@@ -62,7 +63,21 @@ public class loginPage {
 	 */
 	public boolean login( String password, String name)
 	{
-		startPage.makeUserLookAtThisMessageLoop("This feature will be added once databases are ready");
+		userDatabase.getInstance();
+		Iterator<baseUser> databaseIterator = userDatabase.returnIterator();
+		for(int i = 0; i < userDatabase.database.size(); i++)
+		{
+			if(name.equalsIgnoreCase(userDatabase.database.get(i).name)) //if the names match
+			{
+				if(password.equalsIgnoreCase(userDatabase.database.get(i).password)) //if the names match
+				{
+					System.out.println("Login successful!");
+					startPage.changeToCurrentUser(userDatabase.database.get(i));
+					return true;
+				}
+			}
+			startPage.makeUserLookAtThisMessageLoop("Account not found.");
+		}
 		return false;
 	}
 }

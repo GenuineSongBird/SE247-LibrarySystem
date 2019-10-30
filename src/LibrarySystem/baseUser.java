@@ -8,22 +8,33 @@
 package LibrarySystem;
 
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public abstract class baseUser {
 	protected String name;
 	protected int age;
-	protected int phoneNum;
+	protected String phoneNum;
 	protected String address;
 	protected String email;
 	protected int accNum;
 	protected double feeTotal;
-	protected ArrayList<Item> wishlist;
-	private String password;
+	LinkedList<Item> wishList = new LinkedList<Item>();
+	protected String password;
 	checkoutLimitBehavior CheckoutLimitBehavior;
 	
-	
-	public baseUser(String aName, int anAge, int aPhoneNum,
+	/**
+	 * Base constructor for Library Users
+	 * 
+	 * @param aName
+	 * @param anAge
+	 * @param aPhoneNum
+	 * @param anAddress
+	 * @param anEmail
+	 * @param anAccNum
+	 * @param aFeeTotal
+	 * @param aPassword
+	 */
+	public baseUser(String aName, int anAge, String aPhoneNum,
 			String anAddress, String anEmail, int anAccNum, double aFeeTotal,
 			String aPassword)	{
 		this.name = aName;
@@ -37,23 +48,111 @@ public abstract class baseUser {
 	}
 	
 	public void checkoutLimit() {
-		
+		CheckoutLimitBehavior.checkoutLimit();
 	}
 	
 	public double addToFeeTotal(double fee) {
+		this.feeTotal += fee;
 		return this.feeTotal;
 	}
 	
+	/**
+	 * Sets the Checkout Limit Behavior equal to inputed behavior
+	 * @param clb
+	 */
 	public void setCheckoutLimit(checkoutLimitBehavior clb) {
-		
+		CheckoutLimitBehavior = clb;
 	}
 	
+	/**
+	 * Displays user information aside from password
+	 */
 	public void display() {
-		
+		System.out.println("Name:		"+ this.name +
+					"\nAge:			  "+ this.age +
+					"\nPhone Number:   "+ this.phoneNum +
+					"\nAddress		  "+ this.address +
+					"\nEmail:		  "+ this.email +
+					"\nAccount Number: "+ this.accNum +
+					"\nFee Total:	  "+ this.feeTotal);
 	}
 	
 	public double viewFees() {
 		return this.feeTotal;
+	}
+	
+	//Accessors and Mutators for each method
+	
+	//Name 
+	public String getName() {
+		return name;
+	}
+
+	private void setName(String name) {
+		this.name = name;
+	}
+	
+	//Age
+	public int getAge() {
+		return age;
+	}
+
+	private void setAge(int age) {
+		this.age = age;
+	}
+
+	//Phone Number
+	public String getPhoneNum() {
+		return phoneNum;
+	}
+
+	private void setPhoneNum(String phoneNum) {
+		this.phoneNum = phoneNum;
+	}
+
+	//Address
+	public String getAddress() {
+		return address;
+	}
+
+	private void setAddress(String address) {
+		this.address = address;
+	}
+
+	//Email
+	public String getEmail() {
+		return email;
+	}
+
+	private void setEmail(String email) {
+		this.email = email;
+	}
+
+	//Account Number
+	public int getAccNum() {
+		return accNum;
+	}
+
+	private void setAccNum(int accNum) {
+		this.accNum = accNum;
+	}
+
+	//Fee Total
+	public double getFeeTotal() {
+		return feeTotal;
+	}
+
+	private void setFeeTotal(double feeTotal) {
+		this.feeTotal = feeTotal;
+	}
+	public void addToWishList(Item thisItem)
+	{
+		wishList.add(thisItem);
+	}
+	public void viewWishList()
+	{
+		for(int i = 0; i < wishList.size();i++)
+			System.out.println(wishList.get(i).display());
 	}
 	
 }
