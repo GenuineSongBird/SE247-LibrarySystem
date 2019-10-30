@@ -13,17 +13,17 @@ import java.util.ArrayList;
 public abstract class baseUser {
 	protected String name;
 	protected int age;
-	protected int phoneNum;
+	protected String phoneNum;
 	protected String address;
 	protected String email;
 	protected int accNum;
 	protected double feeTotal;
 	protected ArrayList<Item> wishlist;
-	private String password;
+	protected String password;
 	checkoutLimitBehavior CheckoutLimitBehavior;
 	
 	
-	public baseUser(String aName, int anAge, int aPhoneNum,
+	public baseUser(String aName, int anAge, String aPhoneNum,
 			String anAddress, String anEmail, int anAccNum, double aFeeTotal,
 			String aPassword)	{
 		this.name = aName;

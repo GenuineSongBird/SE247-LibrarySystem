@@ -16,7 +16,8 @@ import java.util.Scanner;
 
 
 public class startPage {
-		
+	static baseUser currentUser = null;	
+	
 	public static void main(String[] args) {
 		Scanner key = new Scanner(System.in);
 		boolean exitProgram = false;
@@ -27,8 +28,8 @@ public class startPage {
 		while( exitProgram == false ) //infinite menu loop
 		{
 			System.out.println(getTitle());
-			System.out.println("Untitled Version 0.1 Date: " + getDate());
-			if(isUserLoggedIn() == false) { System.out.println("Not currently logged in."); } else { System.out.println("Welcome, "); }
+			System.out.println("Untitled Version 0.2 Date: " + getDate());
+			if(isUserLoggedIn() == false) { System.out.println("Not currently logged in."); } else { System.out.println("Welcome, "+currentUser.name+ "!"); }
 			int usersChoice = getUserChoice(choices, choices.length);
 			getResponseForChoice(usersChoice);
 		}
@@ -94,6 +95,8 @@ public class startPage {
 	{
 		if( isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
 		{ return; }
+		currentUser = null;
+		makeUserLookAtThisMessageLoop("You are now logged out.");
 	}
 	private static void browse()
 	{
@@ -181,13 +184,21 @@ public class startPage {
 		}
 		return choiceDialogue;
 	}
+	
+	public static void changeToCurrentUser(baseUser thisUser)
+	{
+		currentUser = thisUser;
+	}
 	/* Checks if the user is logged in. 
 	 * @param none
 	 * @returns true if user is logged in, false if otherwise
 	 */
 	public static boolean isUserLoggedIn()
 	{
-		return false;
+		if(currentUser == null)
+			return false;
+		else
+			return true;
 	}
 	/* Prevents an action from being performed if user is not logged in
 	 * @param none
