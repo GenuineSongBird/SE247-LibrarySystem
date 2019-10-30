@@ -21,7 +21,7 @@ public class userAdmin extends baseUser {
 	}
 	
 	public void display() {
-		
+		super.display();
 	}
 	
 }
