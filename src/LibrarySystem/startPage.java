@@ -24,7 +24,7 @@ public class startPage {
 		userDatabase.getInstance();
 		Scanner key = new Scanner(System.in);
 		boolean exitProgram = false;
-		updateNewReleases()
+		updateNewReleases();
 		String[] choices = {"Login or create account","Logout","Browse available items","View fees","Pay fees","Return item","View holds","View wishlist"};
 		//for testing admin functionalities
 		//currentUser = new userAdmin("admin", 0, "a", "a", "a", 0, 0, "a");
@@ -176,16 +176,18 @@ public class startPage {
 		{ return; }
 		currentUser.viewWishList();
 	}
-	public void updateNewReleases()
+	public static void updateNewReleases()
 	{
 		itemDatabase.getInstance();
-		for(int i = 0; i < itemDatabase.getInstance().database.size(); i++)
-		{
-			
-		}
+		//for(int i = 0; i < itemDatabase.database.size(); i++)
+		//{
+			//if(itemDatabase.getInstance().database.get(i).isNew() == true && getTimePassed(itemDatabase.getInstance().database.get(i).getReleaseDate(), getDate()) >= 14)
+			//{
+				//itemDatabase.getInstance().database.get(i).setIsNew(false);
+			//}
+		//}
+	
 	}
-	
-	
 	//Helper Methods ----------------------------------------------------------------------------
 	//these are static so feel free to use these where ever they would help!
 	

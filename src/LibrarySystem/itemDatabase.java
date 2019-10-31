@@ -7,7 +7,7 @@ public class itemDatabase {
 	
 	private static itemDatabase itemDatabase;
 	
-	static LinkedList<baseUser> database = new LinkedList<baseUser>(); 
+	static LinkedList<baseItem> database = new LinkedList<baseItem>(); 
 	
 	private itemDatabase() {
 		loadDatabase();

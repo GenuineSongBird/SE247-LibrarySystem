@@ -16,7 +16,7 @@ public abstract class baseItem {
 		this.numCopies = 0;
 	}
 	
-	public String toString() {
+	public String display() {
 		return "Title: " + this.title 
 		+ "\nDescription: " + this.description 
 		+ "\nRating: " + this.rating 
@@ -36,6 +36,58 @@ public abstract class baseItem {
 	public void setNumCopies(int aNumCopies) {
 		if(aNumCopies >= 0)
 			this.numCopies = aNumCopies;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public double getRating() {
+		return rating;
+	}
+
+	public void setRating(double rating) {
+		this.rating = rating;
+	}
+
+	public int getReleaseDate() {
+		return releaseDate;
+	}
+
+	public void setReleaseDate(int releaseDate) {
+		this.releaseDate = releaseDate;
+	}
+
+	public String getGenre() {
+		return genre;
+	}
+
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+
+	public boolean isNew() {
+		return isNew;
+	}
+
+	public void setNew(boolean isNew) {
+		this.isNew = isNew;
+	}
+
+	public int getNumCopies() {
+		return numCopies;
 	}
 	
 
