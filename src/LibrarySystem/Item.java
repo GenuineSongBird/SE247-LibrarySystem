@@ -12,7 +12,7 @@ public abstract class Item {
 	public Item(String aTitle, String aDescription, int aDate) {
 		this.title = aTitle;
 		this.description = aDescription;
-		this.releaseDate = aDate
+		this.releaseDate = aDate;
 		this.numCopies = 0;
 	}
 	
@@ -37,7 +37,7 @@ public abstract class Item {
 		if(aNumCopies >= 0)
 			this.numCopies = aNumCopies;
 	}
-
+	
 
 
 

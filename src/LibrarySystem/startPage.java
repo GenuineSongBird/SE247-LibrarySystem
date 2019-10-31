@@ -19,6 +19,7 @@ public class startPage {
 	static baseUser currentUser = null;	
 	
 	public static void main(String[] args) {
+		userDatabase.getInstance();
 		Scanner key = new Scanner(System.in);
 		boolean exitProgram = false;
 		String[] choices = {"Login or create account","Logout","Browse available items","View fees","Pay fees","Return item","View holds","View wishlist"};
@@ -130,7 +131,7 @@ public class startPage {
 			System.out.println("Fee Amount: "+ "None");	
 		else
 			System.out.println("Fee Amount: $"+ fees );
-		if(fees.equalsIgnoreCase("None"))
+		if(Double.valueOf(fees) == 0)
 		{
 			makeUserLookAtThisMessageLoop("There are no fees to be paid.");
 			return;

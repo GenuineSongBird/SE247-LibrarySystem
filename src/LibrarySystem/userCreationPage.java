@@ -32,6 +32,11 @@ public class userCreationPage {
 		email = key.nextLine();
 		System.out.println("Please enter your age");
 		age = key.nextLine();
+		while (age.matches("-?\\d+") == false)
+		{
+			System.out.println("Age must be a number\nPlease enter your age");
+			age = key.nextLine();
+		}
 		baseUser thisUser = userDatabase.getInstance().createUser(name, Integer.valueOf(age), phoneNumber, address, email, password);
 		startPage.changeToCurrentUser(thisUser);
 		return true;

@@ -64,7 +64,7 @@ public class loginPage {
 	public boolean login( String password, String name)
 	{
 		userDatabase.getInstance();
-		Iterator<baseUser> databaseIterator = userDatabase.returnIterator();
+		//Iterator<baseUser> databaseIterator = userDatabase.returnIterator();
 		for(int i = 0; i < userDatabase.database.size(); i++)
 		{
 			if(name.equalsIgnoreCase(userDatabase.database.get(i).name)) //if the names match
@@ -76,8 +76,8 @@ public class loginPage {
 					return true;
 				}
 			}
-			startPage.makeUserLookAtThisMessageLoop("Account not found.");
 		}
+		startPage.makeUserLookAtThisMessageLoop("Account not found.");
 		return false;
 	}
 }

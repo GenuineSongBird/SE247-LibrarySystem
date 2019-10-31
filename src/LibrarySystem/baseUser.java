@@ -152,7 +152,9 @@ public abstract class baseUser {
 	public void viewWishList()
 	{
 		for(int i = 0; i < wishList.size();i++)
-			System.out.println(wishList.get(i).display());
+		{
+			//System.out.println(wishList.get(i).display());
+		}
 	}
 	
 }
