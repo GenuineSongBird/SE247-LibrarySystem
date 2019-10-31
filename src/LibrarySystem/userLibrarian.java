@@ -23,5 +23,9 @@ public class userLibrarian extends baseUser{
 		System.out.println(this.name+" is a librarian");
 		super.display();
 	}
+	public String getType()
+	{
+		return "Librarian";
+	}
 	
 }

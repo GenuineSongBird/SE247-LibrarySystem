@@ -23,5 +23,8 @@ public class userTeacher extends baseUser {
 		System.out.println(this.name+" is a Teacher");
 		super.display();
 	}
-	
+	public String getType()
+	{
+		return "Teacher";
+	}
 }

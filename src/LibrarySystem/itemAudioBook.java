@@ -1,10 +1,10 @@
 package LibrarySystem;
 
-public class AudioBook extends Item {
+public class itemAudioBook extends baseItem {
 	private String author;
 	private String reader;
 	
-	public AudioBook(String aTitle, String aDescription, int aDate, String anAuthor, String aReader) {
+	public itemAudioBook(String aTitle, String aDescription, int aDate, String anAuthor, String aReader) {
 		super(aTitle, aDescription, aDate);
 		this.setAuthor(anAuthor);
 		this.setReader(aReader);

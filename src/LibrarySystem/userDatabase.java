@@ -16,9 +16,7 @@ public class userDatabase {
 	
 	public static userDatabase getInstance() {
 	if (userDatabase == null) {
-		//search for save file
-		//if save file does not exist...
-		System.out.println("Creating a item database");
+		System.out.println("Creating a user database");
 		userDatabase = new userDatabase();
 		}
 	return userDatabase;

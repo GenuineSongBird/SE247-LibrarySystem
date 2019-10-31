@@ -10,8 +10,10 @@ package LibrarySystem;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 
 
@@ -22,8 +24,20 @@ public class startPage {
 		userDatabase.getInstance();
 		Scanner key = new Scanner(System.in);
 		boolean exitProgram = false;
+		updateNewReleases()
 		String[] choices = {"Login or create account","Logout","Browse available items","View fees","Pay fees","Return item","View holds","View wishlist"};
-		//get if user is signed in
+		//for testing admin functionalities
+		//currentUser = new userAdmin("admin", 0, "a", "a", "a", 0, 0, "a");
+		//
+		if(currentUser != null && (currentUser.getType().equalsIgnoreCase("Admin")))
+		{
+			choices = Stream.concat(Arrays.stream(choices), Arrays.stream(adminControls.adminChoicesArray())).toArray(String[]::new);
+		}
+		if(currentUser != null && (currentUser.getType().equalsIgnoreCase("Librarian")))
+		{
+			choices = Stream.concat(Arrays.stream(choices), Arrays.stream(librarianControls.librarianChoicesArray())).toArray(String[]::new);
+		}
+	
 		
 		//The home screen
 		while( exitProgram == false ) //infinite menu loop
@@ -161,6 +175,14 @@ public class startPage {
 		if( isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
 		{ return; }
 		currentUser.viewWishList();
+	}
+	public void updateNewReleases()
+	{
+		itemDatabase.getInstance();
+		for(int i = 0; i < itemDatabase.getInstance().database.size(); i++)
+		{
+			
+		}
 	}
 	
 	

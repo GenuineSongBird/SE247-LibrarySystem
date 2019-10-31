@@ -1,21 +1,34 @@
 package LibrarySystem;
 
-import java.util.List;
-import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 
-public class ItemDatabase {
-	private List<Item> itemList = new ArrayList<Item>();
-	private static ItemDatabase iDatabase;
-	private ItemDatabase() {};
+public class itemDatabase {
+	
+	private static itemDatabase itemDatabase;
+	
+	static LinkedList<baseUser> database = new LinkedList<baseUser>(); 
+	
+	private itemDatabase() {
+		loadDatabase();
+		//if no database found
+	};
 
-	public static ItemDatabase getInstance() {
-		if(iDatabase == null) {
-			iDatabase = new Database();
+	public static itemDatabase getInstance() {
+		if(database == null) {
+			System.out.println("Creating a item database");
+			itemDatabase = new itemDatabase();
 		}
-		return iDatabase;
+		return itemDatabase;
 	}
 
-	public void addItem(Item anItem) {
-		iDatabase.add(anItem);
+	//public void addItem(Item anItem) {
+		//database.add(anItem);
+	//}
+	public boolean loadDatabase()
+	{
+		boolean loadStatus = false;
+		
+		return loadStatus;
 	}
 }	

@@ -23,5 +23,8 @@ public class userPatron extends baseUser {
 		System.out.println(this.name+" is a patron");
 		super.display();
 	}
-	
+	public String getType()
+	{
+		return "Patron";
+	}
 }

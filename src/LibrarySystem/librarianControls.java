@@ -27,4 +27,9 @@ public class librarianControls {
 	{
 		
 	}
+	public static String[] librarianChoicesArray()
+	{
+		String[] choices = {"Add a user", "Remove a User","Add an item","View a user account's info","Flag a user account"};
+		return choices;
+	}
 }

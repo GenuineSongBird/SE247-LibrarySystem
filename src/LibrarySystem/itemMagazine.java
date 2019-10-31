@@ -1,9 +1,9 @@
 package LibrarySystem;
 
-public class Magazine extends Item {
+public class itemMagazine extends baseItem {
 private String publisher;
 	
-	public Magazine(String aTitle, String aDescription, int aDate {
+	public itemMagazine(String aTitle, String aDescription, int aDate {
 		super(aTitle, aDescription, aDate);
 		this.setPublisher(aPublisher);
 	}

@@ -1,9 +1,9 @@
 package LibrarySystem;
 
-public class EBook extends Item {
+public class itemEBook extends baseItem {
 	private String author;
 	
-	public EBook(String aTitle, String aDescription, int aDate, String anAuthor) {
+	public itemEBook(String aTitle, String aDescription, int aDate, String anAuthor) {
 		super(String aTitle, String aDescription, int aDate);
 		this.setAuthor(anAuthor);
 	}

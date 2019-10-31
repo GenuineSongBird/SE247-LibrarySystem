@@ -23,5 +23,8 @@ public class userChild extends baseUser {
 		System.out.println(this.name+" is a child");
 		super.display();
 	}
-	
+	public String getType()
+	{
+		return "Child";
+	}
 }

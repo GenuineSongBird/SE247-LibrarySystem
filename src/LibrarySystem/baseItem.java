@@ -1,6 +1,6 @@
 package LibrarySystem;
 
-public abstract class Item {
+public abstract class baseItem {
 	private String title;
 	private String description;
 	private double rating;
@@ -9,7 +9,7 @@ public abstract class Item {
 	private boolean isNew;
 	private int numCopies;
 	
-	public Item(String aTitle, String aDescription, int aDate) {
+	public baseItem(String aTitle, String aDescription, int aDate) {
 		this.title = aTitle;
 		this.description = aDescription;
 		this.releaseDate = aDate;
@@ -30,7 +30,7 @@ public abstract class Item {
 	}
 
 	public void subtractCopy() {
-		this.numCopies--:
+		this.numCopies--;
 	}
 
 	public void setNumCopies(int aNumCopies) {
