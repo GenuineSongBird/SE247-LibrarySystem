@@ -1,5 +1,3 @@
-package LibrarySystem;
-
 import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -15,7 +13,7 @@ public class itemDatabase {
 	private static final String BOOK_FILE_NAME = "src/books.json";
 	private static final String DVD_FILE_NAME = "src/dvds.json";
 	private static final String MAGAZINE_FILE_NAME = "src/magazines.json";
-	private List<Item> itemList = new ArrayList<Item>();
+	private List<baseItem> itemList = new ArrayList<baseItem>();
 	private static itemDatabase iDatabase;
 	
 	private itemDatabase() {}
@@ -27,7 +25,7 @@ public class itemDatabase {
 		return iDatabase;
 	}
 	
-	private void addItem(Item anItem) {
+	private void addItem(baseItem anItem) {
 		itemList.add(anItem);
 	}
 	
@@ -66,13 +64,14 @@ public class itemDatabase {
 				String title = (String)dvdJSON.get("title");
 				int year = ((Long) dvdJSON.get("year")).intValue();
 				String genre = (String)dvdJSON.get("genre");
-				String director = (String)dvdJSON.get("author");
+				String director = (String)dvdJSON.get("director");
 				JSONArray actors = (JSONArray)dvdJSON.get("actors");
 				int numCopies = ((Long) dvdJSON.get("numCopies")).intValue();
 				boolean isNew = (Boolean)dvdJSON.get("newArrival");
-				Item newItem = new itemDVD(title, genre, year, numCopies, isNew, director);
+				itemDVD newItem = new itemDVD(title, genre, year, numCopies, isNew, director);
 				for(int j = 0; j < actors.size(); j++) {
 					String actor = (String)actors.get(j);
+					newItem.addActor(actor);
 				}
 				this.addItem(newItem);
 			
@@ -107,7 +106,7 @@ public class itemDatabase {
 	}
 	
 	public void printDB() {
-		for(Item i : itemList) {
+		for(baseItem i : itemList) {
 			System.out.println(i.toString());
 			System.out.println("--------------------------------------------------------------------");
 		}
