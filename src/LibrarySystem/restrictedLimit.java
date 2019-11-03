@@ -11,7 +11,7 @@ package LibrarySystem;
 
 public class restrictedLimit implements checkoutLimitBehavior{
 	
-	public void checkoutLimit() {
-		
+	public int checkoutLimit() {
+		return 3;
 	}
 }

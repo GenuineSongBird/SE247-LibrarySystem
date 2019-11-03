@@ -9,5 +9,5 @@ package LibrarySystem;
 
 
 public interface checkoutLimitBehavior {
-	public void checkoutLimit();
+	public int checkoutLimit();
 }
