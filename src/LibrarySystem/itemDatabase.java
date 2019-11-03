@@ -70,7 +70,7 @@ public class itemDatabase {
 				JSONArray actors = (JSONArray)dvdJSON.get("actors");
 				int numCopies = ((Long) dvdJSON.get("numCopies")).intValue();
 				boolean isNew = (Boolean)dvdJSON.get("newArrival");
-				Item newItem = new itemDVD(title, genre, year, numCopies, isNew, director);
+				baseItem newItem = new itemDVD(title, genre, year, numCopies, isNew, director);
 				for(int j = 0; j < actors.size(); j++) {
 					String actor = (String)actors.get(j);
 				}
