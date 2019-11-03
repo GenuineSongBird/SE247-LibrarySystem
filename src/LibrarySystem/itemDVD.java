@@ -12,7 +12,15 @@ public class itemDVD extends baseItem {
 	}
 	
 	public String toString() {
-		return super.toString() + "\nStudio: " + this.studio;
+		String actorString = "";
+		for(int i = 0; i < actors.size(); i++) {
+			if(i != actors.size()-1)
+				actorString = actorString + actors.get(i) +", ";
+			else
+				actorString = actorString + actors.get(i);
+		}
+		return super.toString() + "\nDirector: " + this.director 
+				+ "\nActors: " + actorString;
 	}
 
 	private void setStudio(String aStudio) {
@@ -23,7 +31,7 @@ public class itemDVD extends baseItem {
 	}
 	
 	public void addActor(String anActor) {
-		actors.add(anActor);
-	}
+		actors.add(anActor);}
+
 	
 }

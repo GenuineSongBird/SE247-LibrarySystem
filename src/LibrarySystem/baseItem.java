@@ -23,7 +23,7 @@ public abstract class baseItem {
 			+ "\nDescription: " + this.description 
 			+ "\nRating: " + this.rating 
 			+ "\nRelease Date: " + this.releaseDate
-			+ "\nGenre: "
+			+ "\nGenre: " + this.genre 
 			+ "\nAvailable Copies: " + this.numCopies;
 		}
 
