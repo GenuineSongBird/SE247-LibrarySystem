@@ -131,6 +131,7 @@ public class startPage {
 	{
 		//makeUserLookAtThisMessageLoop("This feature will be added once databases are ready"); //forces user to read the message before continuing.
 		browsePage browse = new browsePage();
+		browse.browse();
 	}
 	private static void viewFee()
 	{
@@ -148,6 +149,13 @@ public class startPage {
 		if( isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
 		{  return; }
 		System.out.println("Please enter the name of the item being returned");
+		Scanner key = new Scanner(System.in);
+		String name = key.nextLine();
+		browsePage browse = new browsePage();
+		browse.searchByTitleReturn(name);
+		
+
+		
 	}
 	private static void payFee()
 	{

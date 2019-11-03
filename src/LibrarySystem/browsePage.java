@@ -12,6 +12,10 @@ import java.util.LinkedList;
 public class browsePage {
 	public browsePage()
 	{
+	}
+	public void browse()
+	{
+		itemDetailPage itemDetailPage = new itemDetailPage();
 		int choice = 0;
 		startPage.getLine();
 		String[] choices = {"View new releases", "Search by title","Search by rating","Search by year","Search by genre","Search by description","Request an item to be added","Return to home"};
@@ -101,6 +105,7 @@ public class browsePage {
 			resultsTitle[i] = results.get(i).getTitle();
 		}
 		choice = startPage.getUserChoice(resultsTitle, results.size());
+		itemDetailPage itemDetailPage = new itemDetailPage();
 		itemDetailPage.getDetails(results.get(choice - 1));
 	}
 	public void searchByRating( String rating )
@@ -130,6 +135,7 @@ public class browsePage {
 			resultsRating[i] = String.valueOf(results.get(i).getRating());
 		}
 		choice = startPage.getUserChoiceAndPrintSpecial(resultsTitle, results.size(), resultsRating);
+		itemDetailPage itemDetailPage = new itemDetailPage();
 		itemDetailPage.getDetails(results.get(choice-1));
 
 
@@ -161,6 +167,7 @@ public class browsePage {
 			resultsYear[i] = String.valueOf(results.get(i).getReleaseDate());
 		}
 		choice = startPage.getUserChoiceAndPrintSpecial(resultsTitle, results.size(), resultsYear);
+		itemDetailPage itemDetailPage = new itemDetailPage();
 		itemDetailPage.getDetails(results.get(choice-1));
 	}
 	public void searchByGenre( String genre )
@@ -190,6 +197,7 @@ public class browsePage {
 			resultsGenre[i] = String.valueOf(results.get(i).getGenre());
 		}
 		choice = startPage.getUserChoiceAndPrintSpecial(resultsTitle, results.size(), resultsGenre);
+		itemDetailPage itemDetailPage = new itemDetailPage();
 		itemDetailPage.getDetails(results.get(choice-1));
 	}
 	public void searchByDescription( String Description )
@@ -217,6 +225,7 @@ public class browsePage {
 			resultsTitle[i] = results.get(i).getTitle();
 		}
 		choice = startPage.getUserChoice(resultsTitle, results.size());
+		itemDetailPage itemDetailPage = new itemDetailPage();
 		itemDetailPage.getDetails(results.get(choice-1));
 	}
 	public void addToRequestList()
@@ -228,6 +237,34 @@ public class browsePage {
 		String year = key.nextLine();
 		ensureInfoCorrectType(year, "year");
 		startPage.makeUserLookAtThisMessageLoop("This feature will be added once databases are ready");
+	}
+	public void searchByTitleReturn( String title )
+	{
+		//startPage.makeUserLookAtThisMessageLoop("This feature will be added once databases are ready");
+		itemDatabase.getInstance();
+		
+		int choice = 0;
+		LinkedList<baseItem> results = new LinkedList<baseItem>();
+		for(int i = 0; i < itemDatabase.database.size(); i++)
+		{
+			if(itemDatabase.database.get(i).getTitle().contains(title.toLowerCase()))
+			{
+				results.add(itemDatabase.database.get(i));
+			}
+		}
+		if(results.size() == 0)
+		{
+			startPage.makeUserLookAtThisMessageLoop("No results found with title of " + title);
+			return;
+		}
+		String[] resultsTitle = new String[results.size()];
+		for(int i = 0; i < results.size(); i++) 
+		{ 
+			resultsTitle[i] = results.get(i).getTitle();
+		}
+		choice = startPage.getUserChoice(resultsTitle, results.size());
+		itemDetailPage itemDetailPage = new itemDetailPage();
+		itemDetailPage.getDetailsReturn(results.get(choice - 1));
 	}
 	
 }
