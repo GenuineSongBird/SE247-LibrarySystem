@@ -1,5 +1,3 @@
-package LibrarySystem;
-
 import java.util.LinkedList;
 
 public class itemDVD extends baseItem {
