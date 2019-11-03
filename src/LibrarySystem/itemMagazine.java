@@ -1,3 +1,5 @@
+package LibrarySystem;
+
 public class itemMagazine extends baseItem {
 	private String publisher;
 	private int volume;
