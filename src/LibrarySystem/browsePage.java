@@ -7,6 +7,7 @@
  */
 package LibrarySystem;
 import java.util.Scanner;
+import java.util.LinkedList;
 
 public class browsePage {
 	public browsePage()
@@ -77,31 +78,141 @@ public class browsePage {
 	}
 	public void searchByTitle( String title )
 	{
-		startPage.makeUserLookAtThisMessageLoop("This feature will be added once databases are ready");
-		//itemDatabase.getInstance
+		//startPage.makeUserLookAtThisMessageLoop("This feature will be added once databases are ready");
+		itemDatabase.getInstance();
 		
-		//idea 2:
-		//int choice = 0;
-		//item[] choices
-		//if(itemDatabase.getIterator.getTitle(title).equalsIgnoreCase(title)) 
-			//choices[] = choices[].add(thisItem)
-			//choice = startPage.getUserChoice(choices, choices.length);
+		int choice = 0;
+		LinkedList<baseItem> results = new LinkedList<baseItem>();
+		for(int i = 0; i < itemDatabase.database.size(); i++)
+		{
+			if(itemDatabase.database.get(i).getTitle().equalsIgnoreCase(title))
+			{
+				results.add(itemDatabase.database.get(i));
+			}
+		}
+		if(results.size() == 0)
+		{
+			startPage.makeUserLookAtThisMessageLoop("No results found with title of " + title);
+		}
+		String[] resultsTitle = new String[results.size()];
+		for(int i = 0; i < results.size(); i++) 
+		{ 
+			resultsTitle[i] = results.get(i).getTitle();
+		}
+		choice = startPage.getUserChoice(resultsTitle, results.size());
+		itemDetailPage.getDetails(results.get(choice));
 	}
 	public void searchByRating( String rating )
 	{
-		startPage.makeUserLookAtThisMessageLoop("This feature will be added once databases are ready");
+		//startPage.makeUserLookAtThisMessageLoop("This feature will be added once databases are ready");
+		itemDatabase.getInstance();
+		
+		int choice = 0;
+		LinkedList<baseItem> results = new LinkedList<baseItem>();
+		for(int i = 0; i < itemDatabase.database.size(); i++)
+		{
+			if(itemDatabase.database.get(i).getRating() == Double.valueOf(rating))
+			{
+				results.add(itemDatabase.database.get(i));
+			}
+		}
+		if(results.size() == 0)
+		{
+			startPage.makeUserLookAtThisMessageLoop("No results found with rating of " + rating);
+		}
+		String[] resultsTitle = new String[results.size()];
+		String[] resultsRating = new String[results.size()];
+		for(int i = 0; i < results.size(); i++) 
+		{ 
+			resultsTitle[i] = results.get(i).getTitle();
+			resultsRating[i] = String.valueOf(results.get(i).getRating());
+		}
+		choice = startPage.getUserChoiceAndPrintSpecial(resultsTitle, results.size(), resultsRating);
+		itemDetailPage.getDetails(results.get(choice));
+
+
 	}
 	public void searchByYear( String year )
 	{
-		startPage.makeUserLookAtThisMessageLoop("This feature will be added once databases are ready");
+		//startPage.makeUserLookAtThisMessageLoop("This feature will be added once databases are ready");
+		itemDatabase.getInstance();
+		
+		int choice = 0;
+		LinkedList<baseItem> results = new LinkedList<baseItem>();
+		for(int i = 0; i < itemDatabase.database.size(); i++)
+		{
+			if(itemDatabase.database.get(i).getReleaseDate() == Double.valueOf(year))
+			{
+				results.add(itemDatabase.database.get(i));
+			}
+		}
+		if(results.size() == 0)
+		{
+			startPage.makeUserLookAtThisMessageLoop("No results found with release date of " + year);
+		}
+		String[] resultsTitle = new String[results.size()];
+		String[] resultsYear = new String[results.size()];
+		for(int i = 0; i < results.size(); i++) 
+		{ 
+			resultsTitle[i] = results.get(i).getTitle();
+			resultsYear[i] = String.valueOf(results.get(i).getReleaseDate());
+		}
+		choice = startPage.getUserChoiceAndPrintSpecial(resultsTitle, results.size(), resultsYear);
+		itemDetailPage.getDetails(results.get(choice));
 	}
 	public void searchByGenre( String genre )
 	{
-		startPage.makeUserLookAtThisMessageLoop("This feature will be added once databases are ready");
+		//startPage.makeUserLookAtThisMessageLoop("This feature will be added once databases are ready");
+		itemDatabase.getInstance();
+		
+		int choice = 0;
+		LinkedList<baseItem> results = new LinkedList<baseItem>();
+		for(int i = 0; i < itemDatabase.database.size(); i++)
+		{
+			if(itemDatabase.database.get(i).getGenre().equalsIgnoreCase(genre))
+			{
+				results.add(itemDatabase.database.get(i));
+			}
+		}
+		if(results.size() == 0)
+		{
+			startPage.makeUserLookAtThisMessageLoop("No results found with genre of " + genre);
+		}
+		String[] resultsTitle = new String[results.size()];
+		String[] resultsGenre = new String[results.size()];
+		for(int i = 0; i < results.size(); i++) 
+		{ 
+			resultsTitle[i] = results.get(i).getTitle();
+			resultsGenre[i] = String.valueOf(results.get(i).getGenre());
+		}
+		choice = startPage.getUserChoiceAndPrintSpecial(resultsTitle, results.size(), resultsGenre);
+		itemDetailPage.getDetails(results.get(choice));
 	}
 	public void searchByDescription( String Description )
 	{
-		startPage.makeUserLookAtThisMessageLoop("This feature will be added once databases are ready");
+		//startPage.makeUserLookAtThisMessageLoop("This feature will be added once databases are ready");
+		itemDatabase.getInstance();
+		
+		int choice = 0;
+		LinkedList<baseItem> results = new LinkedList<baseItem>();
+		for(int i = 0; i < itemDatabase.database.size(); i++)
+		{
+			if(itemDatabase.database.get(i).getDescription().contains(Description))
+			{
+				results.add(itemDatabase.database.get(i));
+			}
+		}
+		if(results.size() == 0)
+		{
+			startPage.makeUserLookAtThisMessageLoop("No results found with a description containing " + Description);
+		}
+		String[] resultsTitle = new String[results.size()];
+		for(int i = 0; i < results.size(); i++) 
+		{ 
+			resultsTitle[i] = results.get(i).getTitle();
+		}
+		choice = startPage.getUserChoice(resultsTitle, results.size());
+		itemDetailPage.getDetails(results.get(choice));
 	}
 	public void addToRequestList()
 	{

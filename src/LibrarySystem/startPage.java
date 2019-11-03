@@ -66,6 +66,18 @@ public class startPage {
 		}
 		return Integer.valueOf(userChoice);
 	}
+	public static int getUserChoiceAndPrintSpecial(String[] choices, int availableChoices, String[] special)
+	{
+		String userChoice = "0";
+		Scanner key = new Scanner(System.in);
+		//Ensures we get an actual choice from the user and not anything else.
+		while (userChoice.matches("-?\\d+") == false || userChoice.matches("-?\\d+") == true && Integer.valueOf(userChoice) > availableChoices || userChoice.matches("-?\\d+") == true && Integer.valueOf(userChoice) < 1){
+			System.out.println(getLine());
+			System.out.println(choiceSetupAndPrintSpecial(choices, special));
+			userChoice = key.nextLine();
+		}
+		return Integer.valueOf(userChoice);
+	}
 	/* Gives this class's appropriate response given the users choice
 	 * @param the users choice in integer format
 	 * @returns none
@@ -236,6 +248,15 @@ public class startPage {
 		for(int i = 0; i < choices.length; i++)
 		{
 			choiceDialogue =  choiceDialogue + (i+1) + ". " + choices[i] + "\n";
+		}
+		return choiceDialogue;
+	}
+	public static String choiceSetupAndPrintSpecial(String[] choices, String[] special)
+	{
+		String choiceDialogue = "Please select a choice\n\n";
+		for(int i = 0; i < choices.length; i++)
+		{
+			choiceDialogue =  choiceDialogue + (i+1) + ". " + choices[i] + "\n   " + special[i] + "\n";
 		}
 		return choiceDialogue;
 	}
