@@ -85,7 +85,7 @@ public class browsePage {
 		LinkedList<baseItem> results = new LinkedList<baseItem>();
 		for(int i = 0; i < itemDatabase.database.size(); i++)
 		{
-			if(itemDatabase.database.get(i).getTitle().equalsIgnoreCase(title))
+			if(itemDatabase.database.get(i).getTitle().contains(title.toLowerCase()))
 			{
 				results.add(itemDatabase.database.get(i));
 			}
@@ -93,6 +93,7 @@ public class browsePage {
 		if(results.size() == 0)
 		{
 			startPage.makeUserLookAtThisMessageLoop("No results found with title of " + title);
+			return;
 		}
 		String[] resultsTitle = new String[results.size()];
 		for(int i = 0; i < results.size(); i++) 
@@ -100,7 +101,7 @@ public class browsePage {
 			resultsTitle[i] = results.get(i).getTitle();
 		}
 		choice = startPage.getUserChoice(resultsTitle, results.size());
-		itemDetailPage.getDetails(results.get(choice));
+		itemDetailPage.getDetails(results.get(choice - 1));
 	}
 	public void searchByRating( String rating )
 	{
@@ -119,6 +120,7 @@ public class browsePage {
 		if(results.size() == 0)
 		{
 			startPage.makeUserLookAtThisMessageLoop("No results found with rating of " + rating);
+			return;
 		}
 		String[] resultsTitle = new String[results.size()];
 		String[] resultsRating = new String[results.size()];
@@ -128,7 +130,7 @@ public class browsePage {
 			resultsRating[i] = String.valueOf(results.get(i).getRating());
 		}
 		choice = startPage.getUserChoiceAndPrintSpecial(resultsTitle, results.size(), resultsRating);
-		itemDetailPage.getDetails(results.get(choice));
+		itemDetailPage.getDetails(results.get(choice-1));
 
 
 	}
@@ -149,6 +151,7 @@ public class browsePage {
 		if(results.size() == 0)
 		{
 			startPage.makeUserLookAtThisMessageLoop("No results found with release date of " + year);
+			return;
 		}
 		String[] resultsTitle = new String[results.size()];
 		String[] resultsYear = new String[results.size()];
@@ -158,7 +161,7 @@ public class browsePage {
 			resultsYear[i] = String.valueOf(results.get(i).getReleaseDate());
 		}
 		choice = startPage.getUserChoiceAndPrintSpecial(resultsTitle, results.size(), resultsYear);
-		itemDetailPage.getDetails(results.get(choice));
+		itemDetailPage.getDetails(results.get(choice-1));
 	}
 	public void searchByGenre( String genre )
 	{
@@ -169,7 +172,7 @@ public class browsePage {
 		LinkedList<baseItem> results = new LinkedList<baseItem>();
 		for(int i = 0; i < itemDatabase.database.size(); i++)
 		{
-			if(itemDatabase.database.get(i).getGenre().equalsIgnoreCase(genre))
+			if(itemDatabase.database.get(i).getGenre().contains(genre))
 			{
 				results.add(itemDatabase.database.get(i));
 			}
@@ -177,6 +180,7 @@ public class browsePage {
 		if(results.size() == 0)
 		{
 			startPage.makeUserLookAtThisMessageLoop("No results found with genre of " + genre);
+			return;
 		}
 		String[] resultsTitle = new String[results.size()];
 		String[] resultsGenre = new String[results.size()];
@@ -186,7 +190,7 @@ public class browsePage {
 			resultsGenre[i] = String.valueOf(results.get(i).getGenre());
 		}
 		choice = startPage.getUserChoiceAndPrintSpecial(resultsTitle, results.size(), resultsGenre);
-		itemDetailPage.getDetails(results.get(choice));
+		itemDetailPage.getDetails(results.get(choice-1));
 	}
 	public void searchByDescription( String Description )
 	{
@@ -205,6 +209,7 @@ public class browsePage {
 		if(results.size() == 0)
 		{
 			startPage.makeUserLookAtThisMessageLoop("No results found with a description containing " + Description);
+			return;
 		}
 		String[] resultsTitle = new String[results.size()];
 		for(int i = 0; i < results.size(); i++) 
@@ -212,7 +217,7 @@ public class browsePage {
 			resultsTitle[i] = results.get(i).getTitle();
 		}
 		choice = startPage.getUserChoice(resultsTitle, results.size());
-		itemDetailPage.getDetails(results.get(choice));
+		itemDetailPage.getDetails(results.get(choice-1));
 	}
 	public void addToRequestList()
 	{

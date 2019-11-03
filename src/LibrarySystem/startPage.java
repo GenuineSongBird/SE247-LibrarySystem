@@ -21,6 +21,8 @@ public class startPage {
 	static baseUser currentUser = null;	
 	
 	public static void main(String[] args) {
+		itemDatabase iDatabase  = itemDatabase.getInstance();
+		iDatabase.loadDatabase();
 		userDatabase.getInstance();
 		Scanner key = new Scanner(System.in);
 		boolean exitProgram = false;

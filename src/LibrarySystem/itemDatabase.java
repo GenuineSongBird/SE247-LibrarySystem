@@ -3,7 +3,7 @@ package LibrarySystem;
 import java.util.List;
 import java.util.Scanner;
 import java.util.ArrayList;
-
+import java.util.LinkedList;
 import java.io.FileReader;
 
 import org.json.simple.JSONArray;
@@ -15,7 +15,7 @@ public class itemDatabase {
 	private static final String BOOK_FILE_NAME = "src/books.json";
 	private static final String DVD_FILE_NAME = "src/dvds.json";
 	private static final String MAGAZINE_FILE_NAME = "src/magazines.json";
-	private List<baseItem> itemList = new ArrayList<baseItem>();
+	public static LinkedList<baseItem> database = new LinkedList<baseItem>();
 	private static itemDatabase iDatabase;
 	
 	private itemDatabase() {}
@@ -28,7 +28,7 @@ public class itemDatabase {
 	}
 	
 	private void addItem(baseItem anItem) {
-		itemList.add(anItem);
+		database.add(anItem);
 	}
 	
 	public void loadDatabase() {
@@ -48,6 +48,7 @@ public class itemDatabase {
 				int numCopies = ((Long) bookJSON.get("numCopies")).intValue();
 				boolean isNew = (Boolean)bookJSON.get("newArrival");
 				this.addItem(new itemBook(title, genre, year, numCopies, isNew, author));;
+				System.out.println("itemDatabase: Loaded " + title);
 			}
 			reader.close();
 		}
@@ -108,7 +109,7 @@ public class itemDatabase {
 	}
 	
 	public void printDB() {
-		for(baseItem i : itemList) {
+		for(baseItem i : database) {
 			System.out.println(i.toString());
 			System.out.println("--------------------------------------------------------------------");
 		}

@@ -34,7 +34,7 @@ public class itemDetailPage {
 		int choice;
 		startPage.getLine();
 		System.out.println(thisItem.toString());
-		String[] choices = {"Checkout", "Put on hold","View hold list","Add to wish list"};
+		String[] choices = {"Checkout", "Put on hold","View hold list","Add to wish list", "Return to home menu"};
 		choice = startPage.getUserChoice(choices, choices.length);
 	}
 }

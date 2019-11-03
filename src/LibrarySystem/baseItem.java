@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public abstract class baseItem {
 		private String title;
-		private String description;
+		private String description = "No Description";
 		private double rating;
 		private int releaseDate;
 		private String genre;
@@ -56,5 +56,53 @@ public abstract class baseItem {
 
 		public void setNewStatus(boolean status) {
 			this.isNew = status;
+		}
+
+		public String getDescription() {
+			return description;
+		}
+
+		public void setDescription(String description) {
+			this.description = description;
+		}
+
+		public double getRating() {
+			return rating;
+		}
+
+		public void setRating(double rating) {
+			this.rating = rating;
+		}
+
+		public boolean isNew() {
+			return isNew;
+		}
+
+		public void setNew(boolean isNew) {
+			this.isNew = isNew;
+		}
+
+		public LinkedList<String> getRatingComments() {
+			return ratingComments;
+		}
+
+		public void setRatingComments(LinkedList<String> ratingComments) {
+			this.ratingComments = ratingComments;
+		}
+
+		public String getTitle() {
+			return title;
+		}
+
+		public int getReleaseDate() {
+			return releaseDate;
+		}
+
+		public String getGenre() {
+			return genre;
+		}
+
+		public int getNumCopies() {
+			return numCopies;
 		}
 }
