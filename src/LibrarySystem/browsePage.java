@@ -8,6 +8,9 @@
 package LibrarySystem;
 import java.util.Scanner;
 import java.util.LinkedList;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
 public class browsePage {
 	public browsePage()
@@ -251,15 +254,28 @@ public class browsePage {
 		itemDetailPage itemDetailPage = new itemDetailPage();
 		itemDetailPage.getDetails(results.get(choice-1));
 	}
-	public void addToRequestList()
+	public void addToRequestList() 
 	{
+		if( startPage.isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
+		{  return; }
 		Scanner key = new Scanner(System.in);
 		System.out.println("Please enter the title and year of the item you would like to add\n\nTitle:");
 		String title = key.nextLine();
 		System.out.println("\nYear:");
 		String year = key.nextLine();
 		ensureInfoCorrectType(year, "year");
-		startPage.makeUserLookAtThisMessageLoop("This feature will be added once databases are ready");
+		PrintWriter writer;
+		try {
+			writer = new PrintWriter("the-file-name.txt", "UTF-8");
+			writer.println(startPage.currentUser.getName() + " wants...");
+			writer.println(title);
+			writer.println(year);
+			writer.close();
+		} catch (FileNotFoundException | UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		startPage.makeUserLookAtThisMessageLoop("Your request has been added for consideration.\nThank you");
 	}
 	public void searchByTitleReturn( String title )
 	{

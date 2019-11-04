@@ -45,7 +45,7 @@ public class startPage {
 		while( exitProgram == false ) //infinite menu loop
 		{
 			System.out.println(getTitle());
-			System.out.println("Untitled Version 0.2 Date: " + getDate());
+			System.out.println("Untitled Version 0.3 Date: " + getDate());
 			if(isUserLoggedIn() == false) { System.out.println("Not currently logged in."); } else { System.out.println("Welcome, "+currentUser.name+ "!"); }
 			int usersChoice = getUserChoice(choices, choices.length);
 			getResponseForChoice(usersChoice);
