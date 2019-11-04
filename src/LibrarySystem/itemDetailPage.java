@@ -51,6 +51,35 @@ public class itemDetailPage {
 			return;
 		}
 	}
+	public void leaveComments(baseItem thisItem)
+	{
+		if( startPage.isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
+		{  return; }
+		Scanner key = new Scanner(System.in);
+		System.out.println("Please enter your comment for " + thisItem.getTitle());
+		String comment = key.nextLine();
+		itemDatabase.database.remove(thisItem);
+		thisItem.getRatingComments().add(startPage.currentUser.getName() + " says: \"" + comment + "\"");
+		itemDatabase.database.add(thisItem);
+		startPage.makeUserLookAtThisMessageLoop("Successfully added " + startPage.currentUser.getName() + "'s comment to " + thisItem.getTitle() + "!");
+		return;
+	}
+	public void viewComments(baseItem thisItem)
+	{
+		if(thisItem.getRatingComments().isEmpty() )
+		{
+			startPage.makeUserLookAtThisMessageLoop("No comments available for " + thisItem.getTitle());
+			return;
+		}
+		else
+		{
+			System.out.println("Rating: " + thisItem.getRating() + "\n");
+			for(int i = 0; i < thisItem.getRatingComments().size(); i++)
+				System.out.println(thisItem.getRatingComments().get(i).toString());
+			startPage.makeUserLookAtThisMessageLoop("");
+			return;
+		}
+	}
 	public void viewHoldList(baseItem thisItem)
 	{
 		if(thisItem.getHolds().isEmpty())
@@ -72,7 +101,7 @@ public class itemDetailPage {
 		System.out.println(thisItem.toString());
 		if( startPage.isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
 		{  return; }
-		String[] choices = {"Checkout", "Put on hold","View hold list","Add to wish list", "Return to home menu"};
+		String[] choices = {"Checkout", "Put on hold","View hold list","Add to wish list","View comments", "Leave a comment","Return to home menu"};
 		choice = startPage.getUserChoice(choices, choices.length);
 		getResponseForChoice(choice, thisItem);
 	}
@@ -99,6 +128,12 @@ public class itemDetailPage {
 				return;
 			case 4:
 				addToWishList(thisItem);
+				return;
+			case 5:
+				viewComments(thisItem);
+				return;
+			case 6:
+				leaveComments(thisItem);
 				return;
 		}
 	}
