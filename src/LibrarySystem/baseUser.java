@@ -21,6 +21,8 @@ public abstract class baseUser {
 	LinkedList<baseItem> wishList = new LinkedList<baseItem>();
 	private String password;
 	checkoutLimitBehavior CheckoutLimitBehavior;
+
+	private boolean feeTotalExceeded = false;
 	
 	
 	/**
@@ -53,7 +55,20 @@ public abstract class baseUser {
 	}
 	
 	public double addToFeeTotal(double fee) {
+		if(this.feeTotalExceeded == true)
+		{
+			//TO-DO
+			System.out.println("");
+			return this.feeTotal;
+		}
+		
 		this.feeTotal += fee;
+		if(this.feeTotal >= 100)
+		{
+			this.feeTotalExceeded = true;
+			System.out.println("Fee Total has now exceeded the limit");
+		}
+		
 		return this.feeTotal;
 	}
 	
