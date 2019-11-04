@@ -22,6 +22,7 @@ public abstract class baseUser {
 	protected String password;
 	checkoutLimitBehavior CheckoutLimitBehavior;
 	
+	
 	/**
 	 * Base constructor for Library Users
 	 * 
@@ -151,9 +152,14 @@ public abstract class baseUser {
 	}
 	public void viewWishList()
 	{
+		if(wishList.size() == 0)
+		{
+			startPage.makeUserLookAtThisMessageLoop("Currently no items in wishlist for " + startPage.currentUser.getName());
+			return;
+		}
 		for(int i = 0; i < wishList.size();i++)
 		{
-			//System.out.println(wishList.get(i).display());
+			startPage.makeUserLookAtThisMessageLoop(wishList.get(i).getTitle());
 		}
 	}
 	public String getType()

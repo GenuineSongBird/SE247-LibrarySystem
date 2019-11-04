@@ -1,6 +1,7 @@
 package LibrarySystem;
 
 import java.util.LinkedList;
+import java.util.Queue;
 
 public abstract class baseItem {
 		private String title;
@@ -11,6 +12,7 @@ public abstract class baseItem {
 		private boolean isNew;
 		private int numCopies;
 		private LinkedList<String> ratingComments = new LinkedList<String>();
+		private Queue<baseUser> holds = new LinkedList<>();
 		
 		public baseItem(String aTitle, String aGenre, int aDate, int aNum, boolean isNew) {
 			this.setTitle(aTitle);
@@ -69,7 +71,12 @@ public abstract class baseItem {
 		public double getRating() {
 			return rating;
 		}
-
+		public Queue<baseUser> getHolds() {
+			return holds;
+		}
+		public void setHolds(baseUser user) {
+			holds.add(user);
+		}
 		public void setRating(double rating) {
 			this.rating = rating;
 		}

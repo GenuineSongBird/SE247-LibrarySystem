@@ -191,6 +191,19 @@ public class startPage {
 	{
 		if( isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
 		{ return; }
+		boolean foundOne = false;
+		for(int i = 0; i < itemDatabase.database.size(); i++)
+		{
+			if(itemDatabase.database.get(i).getHolds().contains(currentUser))
+			{
+				System.out.println(itemDatabase.database.get(i).getTitle());
+				foundOne = true;
+			}
+			else if(i == itemDatabase.database.size()-1 && foundOne == false)
+			{
+				makeUserLookAtThisMessageLoop("There are no holds currently for " + currentUser.getName());
+			}
+		}
 	}
 	private static void viewWishlist()
 	{

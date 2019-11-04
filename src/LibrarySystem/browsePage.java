@@ -77,8 +77,31 @@ public class browsePage {
 	}
 	public void viewNewReleases()
 	{
-		startPage.makeUserLookAtThisMessageLoop("This feature will be added once databases are ready");
-		//Itemdatabase.searchByTime(startPage.getTwoWeeksFromNow())
+		itemDatabase.getInstance();
+		
+		int choice = 0;
+		LinkedList<baseItem> results = new LinkedList<baseItem>();
+		for(int i = 0; i < itemDatabase.database.size(); i++)
+		{
+			if(itemDatabase.database.get(i).isNew() == true)
+			{
+				results.add(itemDatabase.database.get(i));
+			}
+		}
+		if(results.size() == 0)
+		{
+			startPage.makeUserLookAtThisMessageLoop("No new releases found");
+			return;
+		}
+		String[] resultsTitle = new String[results.size()];
+		for(int i = 0; i < results.size(); i++) 
+		{ 
+			resultsTitle[i] = results.get(i).getTitle();
+		}
+		choice = startPage.getUserChoice(resultsTitle, results.size());
+		itemDetailPage itemDetailPage = new itemDetailPage();
+		itemDetailPage.getDetails(results.get(choice - 1));
+		
 	}
 	public void searchByTitle( String title )
 	{

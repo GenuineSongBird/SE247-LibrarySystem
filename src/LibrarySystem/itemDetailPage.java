@@ -21,9 +21,14 @@ public class itemDetailPage {
 	{
 		
 	}
-	public void viewHoldList()
+	public void viewHoldList(baseItem thisItem)
 	{
-		//item.displayHoldList
+		if(thisItem.getHolds().isEmpty())
+		{
+			System.out.println(thisItem.getTitle() + " has no holds currently.");
+		}
+		else
+			System.out.println(thisItem.getHolds().peek().getName());
 	}
 	public void addToWishList()
 	{
@@ -34,19 +39,21 @@ public class itemDetailPage {
 		int choice;
 		startPage.getLine();
 		System.out.println(thisItem.toString());
+		if( startPage.isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
+		{  return; }
 		String[] choices = {"Checkout", "Put on hold","View hold list","Add to wish list", "Return to home menu"};
 		choice = startPage.getUserChoice(choices, choices.length);
-		getResponseForChoice(choice);
+		getResponseForChoice(choice, thisItem);
 	}
 	public  void getDetailsReturn(baseItem thisItem)
 	{
 		startPage.getLine();
-		startPage.makeUserLookAtThisMessageLoop(thisItem.toString() + "\n\nSuccessfully returned " + thisItem.getTitle() + "!");
 		itemDatabase.database.remove(thisItem);
 		thisItem.setNumCopies(thisItem.getNumCopies() + 1);
+		startPage.makeUserLookAtThisMessageLoop(thisItem.toString() + "\n\nSuccessfully returned " + thisItem.getTitle() + "!");
 		itemDatabase.database.add(thisItem);
 	}
-	private  void getResponseForChoice(int usersChoice)
+	private  void getResponseForChoice(int usersChoice, baseItem thisItem)
 	{
 		Scanner key = new Scanner(System.in);
 		switch(usersChoice) {
@@ -57,7 +64,7 @@ public class itemDetailPage {
 				putOnHold();
 				return;
 			case 3:
-				viewHoldList();
+				viewHoldList(thisItem);
 				return;
 			case 4:
 				addToWishList();
