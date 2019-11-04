@@ -20,7 +20,7 @@ public class userTeacher extends baseUser {
 	}
 	
 	public void display() {
-		System.out.println(this.getName+" is a Teacher");
+		System.out.println(this.getName()+" is a Teacher");
 		super.display();
 	}
 	public String getType()

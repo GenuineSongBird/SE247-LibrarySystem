@@ -20,7 +20,7 @@ public class userLibrarian extends baseUser{
 	}
 	
 	public void display() {
-		System.out.println(this.getName+" is a librarian");
+		System.out.println(this.getName()+" is a librarian");
 		super.display();
 	}
 	public String getType()
