@@ -47,7 +47,7 @@ public class startPage {
 		{
 			System.out.println(getTitle());
 			System.out.println("Untitled Version 0.3 Date: " + getDate());
-			if(isUserLoggedIn() == false) { System.out.println("Not currently logged in."); } else { System.out.println("Welcome, "+currentUser.name+ "!"); }
+			if(isUserLoggedIn() == false) { System.out.println("Not currently logged in."); } else { System.out.println("Welcome, "+currentUser.getName+ "!"); }
 			int usersChoice = getUserChoice(choices, choices.length);
 			getResponseForChoice(usersChoice);
 		}
