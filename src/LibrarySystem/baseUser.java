@@ -11,15 +11,15 @@ package LibrarySystem;
 import java.util.LinkedList;
 
 public abstract class baseUser {
-	protected String name;
-	protected int age;
-	protected String phoneNum;
-	protected String address;
-	protected String email;
-	protected int accNum;
-	protected double feeTotal;
+	private String name;
+	private int age;
+	private String phoneNum;
+	private String address;
+	private String email;
+	private int accNum;
+	private double feeTotal;
 	LinkedList<baseItem> wishList = new LinkedList<baseItem>();
-	protected String password;
+	private String password;
 	checkoutLimitBehavior CheckoutLimitBehavior;
 	
 	
