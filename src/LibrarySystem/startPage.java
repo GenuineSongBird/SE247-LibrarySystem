@@ -27,6 +27,7 @@ public class startPage {
 		Scanner key = new Scanner(System.in);
 		boolean exitProgram = false;
 		updateNewReleases();
+		updateAccountTypes();
 		String[] choices = {"Login or create account","Logout","Browse available items","View fees","Pay fees","Return item","View holds","View wishlist"};
 		//for testing admin functionalities
 		//currentUser = new userAdmin("admin", 0, "a", "a", "a", 0, 0, "a");
@@ -209,7 +210,15 @@ public class startPage {
 	{
 		if( isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
 		{ return; }
-		currentUser.viewWishList();
+		if(currentUser.wishList.size() == 0)
+		{
+			makeUserLookAtThisMessageLoop("There are no items on " + currentUser.getName() + "'s wishlist");
+			return;
+		}
+		for(int i = 0; i < currentUser.wishList.size(); i++)
+		{
+			makeUserLookAtThisMessageLoop(currentUser.wishList.get(i).toString());
+		}
 	}
 	public static void updateNewReleases()
 	{
@@ -222,6 +231,19 @@ public class startPage {
 			//}
 		//}
 	
+	}
+	public static void updateAccountTypes()
+	{
+		for( int i = 0; i < userDatabase.database.size(); i++)
+		{
+			if(userDatabase.database.get(i).getAge() >= 16)
+			{
+				baseUser oldChild = userDatabase.database.get(i);
+				userDatabase.database.remove(userDatabase.database.get(i));
+				userDatabase.getInstance().createUser(oldChild.getName(), oldChild.getAge(), oldChild.getPhoneNum(), oldChild.getAddress(), oldChild.getEmail(), oldChild.getPassword());
+	
+			}
+		}
 	}
 	//Helper Methods ----------------------------------------------------------------------------
 	//these are static so feel free to use these where ever they would help!

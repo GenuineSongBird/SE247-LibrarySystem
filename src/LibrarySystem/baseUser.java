@@ -133,7 +133,9 @@ public abstract class baseUser {
 	public int getAccNum() {
 		return accNum;
 	}
-
+	public String getPassword() {
+		return password;
+	}
 	private void setAccNum(int accNum) {
 		this.accNum = accNum;
 	}

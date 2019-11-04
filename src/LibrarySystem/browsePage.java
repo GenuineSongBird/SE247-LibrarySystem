@@ -266,7 +266,7 @@ public class browsePage {
 		ensureInfoCorrectType(year, "year");
 		PrintWriter writer;
 		try {
-			writer = new PrintWriter("the-file-name.txt", "UTF-8");
+			writer = new PrintWriter("ItemRequests.txt", "UTF-8");
 			writer.println(startPage.currentUser.getName() + " wants...");
 			writer.println(title);
 			writer.println(year);

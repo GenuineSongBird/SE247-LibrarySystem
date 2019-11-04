@@ -30,9 +30,10 @@ public class itemDetailPage {
 		else
 			System.out.println(thisItem.getHolds().peek().getName());
 	}
-	public void addToWishList()
+	public void addToWishList(baseItem thisItem)
 	{
-		//user.addToWishList(item);
+		startPage.currentUser.wishList.add(thisItem);
+		startPage.makeUserLookAtThisMessageLoop("Successfully added " + thisItem.getTitle() + " to " + startPage.currentUser.getName() + "'s wishlist!");
 	}
 	public  void getDetails(baseItem thisItem)
 	{
@@ -67,7 +68,7 @@ public class itemDetailPage {
 				viewHoldList(thisItem);
 				return;
 			case 4:
-				addToWishList();
+				addToWishList(thisItem);
 				return;
 		}
 	}

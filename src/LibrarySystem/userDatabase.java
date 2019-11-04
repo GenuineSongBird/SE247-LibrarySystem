@@ -24,7 +24,15 @@ public class userDatabase {
 	public baseUser createUser(String name, int age, String phoneNum, String address, String email, String password)
 	{
 		//String name, int age, int phoneNum,String address, String email, int accNum, double feeTotal,String password)
-		userPatron thisUser = new userPatron(name, age, phoneNum, address, email, database.size(),0,password);
+		baseUser thisUser;
+		if(age < 16)
+		{
+			thisUser = new userChild(name, age, phoneNum, address, email, database.size(),0,password);
+		}
+		else
+		{
+			thisUser = new userPatron(name, age, phoneNum, address, email, database.size(),0,password);
+		}
 		database.add(thisUser);
 		return thisUser;
 	}
