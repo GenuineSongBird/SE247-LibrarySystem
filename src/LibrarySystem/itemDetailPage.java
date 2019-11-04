@@ -13,22 +13,52 @@ public class itemDetailPage {
 	{
 
 	}
-	public void checkout()
+	public void checkout(baseItem thisItem)
 	{
+		if( startPage.isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
+		{  return; }
+		if(thisItem.getNumCopies() == 0)
+		{
+			startPage.makeUserLookAtThisMessageLoop("There are no available copies of " + thisItem.getTitle() + " currently\nYou can put this item on hold for when a copy is available");
+			return;
+		}
+		else
+		{
+			startPage.getLine();
+			itemDatabase.database.remove(thisItem);
+			thisItem.setNumCopies(thisItem.getNumCopies() - 1);
+			startPage.makeUserLookAtThisMessageLoop(thisItem.toString() + "\n\nSuccessfully checkedout " + thisItem.getTitle() + "!");
+			itemDatabase.database.add(thisItem);
+		}
 		
 	}
-	public void putOnHold()
+	public void putOnHold(baseItem thisItem)
 	{
-		
+		if( startPage.isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
+		{  return; }
+		if((thisItem.getNumCopies() == 0) == false)
+		{
+			startPage.makeUserLookAtThisMessageLoop("There are  available copies of " + thisItem.getTitle() + " currently\nYou can checkout this Item");
+			return;
+		}
+		else
+		{
+			startPage.getLine();
+			itemDatabase.database.remove(thisItem);
+			thisItem.setHolds(startPage.currentUser);
+			startPage.makeUserLookAtThisMessageLoop("Successfully put " + startPage.currentUser.getName() + " on hold queue for " + thisItem.getTitle() + "!");
+			itemDatabase.database.add(thisItem);
+			return;
+		}
 	}
 	public void viewHoldList(baseItem thisItem)
 	{
 		if(thisItem.getHolds().isEmpty())
 		{
-			System.out.println(thisItem.getTitle() + " has no holds currently.");
+			startPage.makeUserLookAtThisMessageLoop(thisItem.getTitle() + " has no holds currently.");
 		}
 		else
-			System.out.println(thisItem.getHolds().peek().getName());
+			startPage.makeUserLookAtThisMessageLoop("Next in the hold queue for " + thisItem.getTitle() + " is " + thisItem.getHolds().peek().getName());
 	}
 	public void addToWishList(baseItem thisItem)
 	{
@@ -59,10 +89,10 @@ public class itemDetailPage {
 		Scanner key = new Scanner(System.in);
 		switch(usersChoice) {
 			case 1:
-				checkout();
+				checkout(thisItem);
 				return;
 			case 2:
-				putOnHold();
+				putOnHold(thisItem);
 				return;
 			case 3:
 				viewHoldList(thisItem);

@@ -197,7 +197,8 @@ public class startPage {
 		{
 			if(itemDatabase.database.get(i).getHolds().contains(currentUser))
 			{
-				System.out.println(itemDatabase.database.get(i).getTitle());
+				System.out.println(itemDatabase.database.get(i).toString());
+				makeUserLookAtThisMessageLoop("");
 				foundOne = true;
 			}
 			else if(i == itemDatabase.database.size()-1 && foundOne == false)
