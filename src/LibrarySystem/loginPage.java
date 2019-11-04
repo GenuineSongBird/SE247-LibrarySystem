@@ -67,9 +67,9 @@ public class loginPage {
 		//Iterator<baseUser> databaseIterator = userDatabase.returnIterator();
 		for(int i = 0; i < userDatabase.database.size(); i++)
 		{
-			if(name.equalsIgnoreCase(userDatabase.database.get(i).name)) //if the names match
+			if(name.equalsIgnoreCase(userDatabase.database.get(i).getName())) //if the names match
 			{
-				if(password.equalsIgnoreCase(userDatabase.database.get(i).password)) //if the names match
+				if(password.equalsIgnoreCase(userDatabase.database.get(i).getPassword())) //if the names match
 				{
 					System.out.println("Login successful!");
 					startPage.changeToCurrentUser(userDatabase.database.get(i));
