@@ -22,4 +22,7 @@ public class itemAudioBook extends baseItem {
 	private void setReader(String aReader) {
 		this.reader = aReader;
 	}
+	public String getType() {
+		return "itemAudioBook";
+	}
 }

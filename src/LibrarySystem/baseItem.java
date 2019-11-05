@@ -14,7 +14,16 @@ public abstract class baseItem {
 		private int ratingAmount;
 		private LinkedList<String> ratingComments = new LinkedList<String>();
 		private Queue<baseUser> holds = new LinkedList<>();
+		private String dueDate;
 		
+		public String getDueDate() {
+			return dueDate;
+		}
+
+		public void setDueDate(String dueDate) {
+			this.dueDate = dueDate;
+		}
+
 		public baseItem(String aTitle, String aGenre, int aDate, int aNum, boolean isNew) {
 			this.setTitle(aTitle);
 			this.setGenre(aGenre);
@@ -120,4 +129,5 @@ public abstract class baseItem {
 		public int getNumCopies() {
 			return numCopies;
 		}
+		public abstract String getType();
 }

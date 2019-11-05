@@ -15,6 +15,8 @@ import java.util.Date;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
+import org.joda.time.DateTime;
+
 
 
 public class startPage {
@@ -28,7 +30,7 @@ public class startPage {
 		boolean exitProgram = false;
 		updateNewReleases();
 		updateAccountTypes();
-		String[] choices = {"Login or create account","Logout","Browse available items","View fees","Pay fees","Return item","View holds","View wishlist"};
+		String[] choices = {"Login or create account","Logout","Browse available items","View fees","Pay fees","Return item","View holds","View wishlist","View checked out items"};
 		//for testing admin functionalities
 		//currentUser = new userAdmin("admin", 0, "a", "a", "a", 0, 0, "a");
 		//
@@ -111,6 +113,9 @@ public class startPage {
 				return;
 			case 8:
 				viewWishlist();
+				return;
+			case 9:
+				currentUser.viewCheckedOutList();
 				return;
 		}
 		
@@ -260,11 +265,27 @@ public class startPage {
 	 */
 	public static String getDate()
 	{
-		String date = "";
-		DateFormat dateFormat = new SimpleDateFormat("yyyy/dd/MM HH:mm:ss");
-		Date Date = new Date();
-		date = (String)dateFormat.format(Date);
+		DateTime dateTime = new DateTime();
+		String date = dateTime.getYear() + "/" + dateTime.getMonthOfYear() + "/" + dateTime.getDayOfMonth();
 		return date;
+	}
+	public static String getDueDate(baseItem thisItem)
+	{
+		DateTime dateTime = new DateTime();
+	    String DueDate = "";
+
+	    if(thisItem.getType().equalsIgnoreCase("itemDVD"))
+	    {
+	    	dateTime = dateTime.plusDays(7);
+	    	DueDate = (dateTime.getYear() + "/" + dateTime.getMonthOfYear() + "/" + dateTime.getDayOfMonth());
+	    }
+	    else 
+	    {
+	    	dateTime = dateTime.plusDays(30);
+	    	DueDate = (dateTime.getYear() + "/" + dateTime.getMonthOfYear() + "/" + dateTime.getDayOfMonth());
+	    }
+	    System.out.println(dateTime);
+	    return DueDate;
 	}
 	/* Gives the current name of the library system in same format.
 	 * @param none

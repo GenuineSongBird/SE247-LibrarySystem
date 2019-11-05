@@ -35,5 +35,7 @@ public class itemDVD extends baseItem {
 	public void addActor(String anActor) {
 		actors.add(anActor);}
 
-	
+	public String getType() {
+		return "itemDVD";
+	}
 }

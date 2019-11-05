@@ -29,6 +29,9 @@ public class itemDetailPage {
 			thisItem.setNumCopies(thisItem.getNumCopies() - 1);
 			startPage.makeUserLookAtThisMessageLoop(thisItem.toString() + "\n\nSuccessfully checkedout " + thisItem.getTitle() + "!");
 			itemDatabase.database.add(thisItem);
+			thisItem.setNumCopies(1);
+			thisItem.setDueDate(startPage.getDueDate(thisItem));
+			startPage.currentUser.addToCheckedOutList(thisItem);
 		}
 		
 	}

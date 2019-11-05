@@ -19,6 +19,7 @@ public abstract class baseUser {
 	private int accNum;
 	private double feeTotal;
 	LinkedList<baseItem> wishList = new LinkedList<baseItem>();
+	LinkedList<baseItem> checkedOutList = new LinkedList<baseItem>();
 	private String password;
 	checkoutLimitBehavior CheckoutLimitBehavior;
 
@@ -176,8 +177,25 @@ public abstract class baseUser {
 		}
 		for(int i = 0; i < wishList.size();i++)
 		{
-			startPage.makeUserLookAtThisMessageLoop(wishList.get(i).getTitle());
+			System.out.println(wishList.get(i).getTitle());
+			
+		}startPage.makeUserLookAtThisMessageLoop("");
+	}
+	public void addToCheckedOutList(baseItem thisItem)
+	{
+		checkedOutList.add(thisItem);
+	}
+	public void viewCheckedOutList()
+	{
+		if(checkedOutList.size() == 0)
+		{
+			startPage.makeUserLookAtThisMessageLoop("Currently no items checked out by " + startPage.currentUser.getName());
+			return;
 		}
+		for(int i = 0; i < checkedOutList.size();i++)
+		{
+			System.out.println(checkedOutList.get(i).getTitle() + "\nDue Date: " + checkedOutList.get(i).getDueDate() + "\n");
+		}startPage.makeUserLookAtThisMessageLoop("");
 	}
 	public String getType()
 	{

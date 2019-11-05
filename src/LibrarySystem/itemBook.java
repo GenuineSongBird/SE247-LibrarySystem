@@ -15,5 +15,9 @@ public class itemBook extends baseItem {
 	private void setAuthor(String anAuthor) {
 		this.author = anAuthor;
 	}
+	public String getType() {
+		return "itemBook";
+	}
+
 	
 }

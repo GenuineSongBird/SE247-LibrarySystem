@@ -29,4 +29,7 @@ public class itemMagazine extends baseItem {
 		if(anIssue >= 0) 
 			this.issue = anIssue;
 	}
+	public String getType() {
+		return "itemMagazine";
+	}
 }
