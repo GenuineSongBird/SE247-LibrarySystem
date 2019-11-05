@@ -49,7 +49,10 @@ public class startPage {
 			//if(currentUser != null) {  }
 			applyFees();
 			checkForHolds();
-			if(currentUser != null) { if(currentUser.checkedOutList.size() != 0) { for(int i = 0; i < itemDatabase.database.size(); i++) { itemDatabase.database.get(i).setNumCopies(100);checkedForAvailableHolds = false;} } }
+			//
+			//The below line of code tests the "alert user when item on hold is available feature. Instructions: 1: enable code. 2: put an item on hold. 3: check out any item 4: leave home menu then return. 5: see proof that the hold system works.
+			//if(currentUser != null) { if(currentUser.checkedOutList.size() != 0) { for(int i = 0; i < itemDatabase.database.size(); i++) { itemDatabase.database.get(i).setNumCopies(100);checkedForAvailableHolds = false;} } }
+			//
 			System.out.println(getTitle());
 			System.out.println("Untitled Version 0.4 Date: " + getDate());
 			if(isUserLoggedIn() == false) { System.out.println("Not currently logged in."); } else { System.out.println("Welcome, "+currentUser.getName()+ "!"); }

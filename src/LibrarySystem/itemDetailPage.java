@@ -32,6 +32,11 @@ public class itemDetailPage {
 			startPage.makeUserLookAtThisMessageLoop("Cannot checkout\nThe checkout limit for " + startPage.currentUser.getName() + " is " + startPage.currentUser.CheckoutLimitBehavior.checkoutLimit() + " items at a time.\nPlease return items to continue checking out");
 			return;
 		}
+		if(thisItem.getHolds().isEmpty() == false)
+		{
+			startPage.makeUserLookAtThisMessageLoop("Cannot checkout\n" + thisItem.getTitle() + " is already on hold for another user.");
+			return;
+		}
 		else
 		{
 			startPage.getLine();
