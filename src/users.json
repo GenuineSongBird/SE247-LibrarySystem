@@ -3,6 +3,7 @@
   	"id":1,
   	"firstName":"Robbie",
   	"lastName":"White",
+	"password":"test",
     "address": "123 Park Avenue",
     "email":"rwhite@gmail.com",
     "phone":"803-565-4433",
@@ -13,6 +14,7 @@
   	"id":2,
   	"firstName":"Amy",
   	"lastName":"Smith",
+	"password":"test",
     "address": "765 Jefferson Rd.",
     "email":"asmith@gmail.com",
     "phone":"803-242-4427",
@@ -23,6 +25,7 @@
   	"id":3,
   	"firstName":"Jim",
   	"lastName":"Hudson",
+	"password":"test",
     "address": "834 Birch Ln.",
     "email":"jhudson@yahoo.com",
     "phone":"803-555-4545",
@@ -33,6 +36,7 @@
   	"id":4,
   	"firstName":"Bryan",
   	"lastName":"Wilson",
+	"password":"test",
     "address": "342 Fairview Pl.",
     "email":"bwilson@gmail.com",
     "phone":"803-232-7788",
@@ -43,11 +47,24 @@
   	"id":5,
   	"firstName":"Jed",
   	"lastName":"Wilson",
+	"password":"test",
     "address": "342 Fairview Pl.",
     "email":"jwilson@gmail.com",
     "phone":"803-945-3388",
     "accountId":4,
     "type":"P",
     "fines":0
+  }
+  {
+  	"id":6,
+  	"firstName":"John",
+  	"lastName":"Logan",
+	"password":"test",
+    "address": "342 whoosh.",
+    "email":"jlogan@gmail.com",
+    "phone":"803-308-3388",
+    "accountId":4,
+    "type":"P",
+    "fines":1234
   }
 ]}
