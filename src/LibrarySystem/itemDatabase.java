@@ -47,7 +47,14 @@ public class itemDatabase {
 				String author = (String)bookJSON.get("author");
 				int numCopies = ((Long) bookJSON.get("numCopies")).intValue();
 				boolean isNew = (Boolean)bookJSON.get("newArrival");
-				this.addItem(new itemBook(title, genre, year, numCopies, isNew, author));;
+				JSONArray comments = (JSONArray)bookJSON.get("comments");
+				itemBook itemBook = new itemBook(title, genre, year, numCopies, isNew, author);
+				LinkedList<String> commentsArray = new LinkedList<String>();
+				for(int j = 0; j < comments.size(); j++) {
+					commentsArray.add((String)comments.get(j));
+				}
+				itemBook.setRatingComments(commentsArray);
+				this.addItem(itemBook);
 				System.out.println("itemDatabase: Loaded " + title);
 			}
 			reader.close();
@@ -77,6 +84,12 @@ public class itemDatabase {
 					String actor = (String)actors.get(j);
 					newItem.addActor(actor);
 				}
+				JSONArray comments = (JSONArray)dvdJSON.get("comments");
+				LinkedList<String> commentsArray = new LinkedList<String>();
+				for(int j = 0; j < comments.size(); j++) {
+					commentsArray.add((String)comments.get(j));
+				}
+				newItem.setRatingComments(commentsArray);
 				this.addItem(newItem);
 			
 			}
@@ -101,7 +114,14 @@ public class itemDatabase {
 				int issue = ((Long) magJSON.get("issue")).intValue();
 				int numCopies = ((Long) magJSON.get("numCopies")).intValue();
 				boolean isNew = (Boolean) magJSON.get("newArrival");
-				this.addItem(new itemMagazine(title, genre, year, numCopies, isNew, publisher, volume, issue));
+				itemMagazine itemMagazine = new itemMagazine(title, genre, year, numCopies, isNew, publisher, volume, issue);
+				JSONArray comments = (JSONArray)magJSON.get("comments");
+				LinkedList<String> commentsArray = new LinkedList<String>();
+				for(int j = 0; j < comments.size(); j++) {
+					commentsArray.add((String)comments.get(j));
+				}
+				itemMagazine.setRatingComments(commentsArray);
+				this.addItem(itemMagazine);
 				System.out.println("itemDatabase: Loaded " + title);
 			}
 		}

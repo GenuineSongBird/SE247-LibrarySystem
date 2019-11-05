@@ -8,7 +8,8 @@
     "volume": 7,
     "issue":2,
     "numCopies":2,
-    "newArrival":false
+    "newArrival":false,
+	"comments": []
   },{
   	"id":6,
   	"title":"Tiny Houses",
@@ -18,7 +19,8 @@
     "volume": 2,
     "issue":1,
     "numCopies":4,
-    "newArrival":true
+    "newArrival":true,
+	"comments": []
   },{
   	"id":7,
   	"title":"Popular Woodworking",
@@ -28,7 +30,8 @@
     "volume": 1,
     "issue":3,
     "numCopies":1,
-    "newArrival":false
+    "newArrival":false,
+	"comments": []
   },{
   	"id":8,
   	"title":"Seventeen",
@@ -38,7 +41,8 @@
     "volume": 10,
     "issue":2,
     "numCopies":5,
-    "newArrival":false
+    "newArrival":false,
+	"comments": []
   },{
   	"id":9,
   	"title":"Popular Mechanics Issue 7",
@@ -48,6 +52,7 @@
     "volume": 7,
     "issue":2,
     "numCopies":5,
-    "newArrival":false
+    "newArrival":false,
+	"comments": []
   }
 ]}
