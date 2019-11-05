@@ -69,7 +69,7 @@ public abstract class baseUser {
 			this.feeTotalExceeded = true;
 			System.out.println("Fee Total has now exceeded the limit");
 		}
-		
+		if(this.feeTotal >= 100) { this.feeTotal = 100;}
 		return this.feeTotal;
 	}
 	
@@ -95,6 +95,7 @@ public abstract class baseUser {
 	}
 	
 	public double viewFees() {
+		if(feeTotal >= 100) { feeTotal = 100;}
 		return this.feeTotal;
 	}
 	
@@ -158,11 +159,14 @@ public abstract class baseUser {
 
 	//Fee Total
 	public double getFeeTotal() {
+		if(feeTotal >= 100) { feeTotal = 100;}
 		return feeTotal;
+		
 	}
 
-	private void setFeeTotal(double feeTotal) {
+	public void setFeeTotal(double feeTotal) {
 		this.feeTotal = feeTotal;
+		if(feeTotal >= 100) { feeTotal = 100;}
 	}
 	public void addToWishList(baseItem thisItem)
 	{

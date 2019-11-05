@@ -21,14 +21,14 @@ import org.joda.time.DateTime;
 
 public class startPage {
 	static baseUser currentUser = null;	
-	
+	static boolean feesAppliedThisUser = false;
 	public static void main(String[] args) {
 		itemDatabase iDatabase  = itemDatabase.getInstance();
 		iDatabase.loadDatabase();
 		userDatabase.getInstance();
 		Scanner key = new Scanner(System.in);
 		boolean exitProgram = false;
-		updateNewReleases();
+		
 		updateAccountTypes();
 		String[] choices = {"Login or create account","Logout","Browse available items","View fees","Pay fees","Return item","View holds","View wishlist","View checked out items"};
 		//for testing admin functionalities
@@ -42,13 +42,12 @@ public class startPage {
 		{
 			choices = Stream.concat(Arrays.stream(choices), Arrays.stream(librarianControls.librarianChoicesArray())).toArray(String[]::new);
 		}
-	
-		
 		//The home screen
 		while( exitProgram == false ) //infinite menu loop
 		{
+			applyFees();
 			System.out.println(getTitle());
-			System.out.println("Untitled Version 0.3 Date: " + getDate());
+			System.out.println("Untitled Version 0.4 Date: " + getDate());
 			if(isUserLoggedIn() == false) { System.out.println("Not currently logged in."); } else { System.out.println("Welcome, "+currentUser.getName()+ "!"); }
 			int usersChoice = getUserChoice(choices, choices.length);
 			getResponseForChoice(usersChoice);
@@ -154,11 +153,31 @@ public class startPage {
 	{
 		if( isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
 		{  return; }
-		System.out.println("Please enter the name of the item being returned");
-		Scanner key = new Scanner(System.in);
-		String name = key.nextLine();
-		browsePage browse = new browsePage();
-		browse.searchByTitleReturn(name);
+		if(currentUser.checkedOutList.isEmpty())
+		{
+			makeUserLookAtThisMessageLoop(currentUser.getName() + " has no currently checked out items ");
+		}
+		else
+		{
+			System.out.println("Please select the item being returned");
+			int choice;
+			String[] choiceArray = new String[currentUser.checkedOutList.size()];
+			for(int i = 0; i < currentUser.checkedOutList.size(); i++)
+			{
+				choiceArray[i] = currentUser.checkedOutList.get(i).getTitle();
+			}
+			choice = startPage.getUserChoice(choiceArray, choiceArray.length);
+			for(int i = 0; i < itemDatabase.database.size(); i++)
+			{
+				if(itemDatabase.database.get(i).getTitle().equalsIgnoreCase(choiceArray[choice-1]))
+				{
+					itemDatabase.database.get(i).setNumCopies(itemDatabase.database.get(i).getNumCopies() + 1);
+					
+				}
+			}
+			currentUser.checkedOutList.remove(choice-1);
+			makeUserLookAtThisMessageLoop("Successfully returned " + choiceArray[choice-1] + "!");
+		}
 		
 
 		
@@ -191,6 +210,7 @@ public class startPage {
 			Double resultingFee = Double.valueOf(Double.valueOf(fees) - Double.valueOf(payThisMuch));
 			System.out.println("$"+ payThisMuch + " payed off.\nAmount left: " + resultingFee);
 			makeUserLookAtThisMessageLoop("");
+			currentUser.setFeeTotal(resultingFee);
 		}
 	}
 	private static void viewHolds()
@@ -226,16 +246,21 @@ public class startPage {
 			makeUserLookAtThisMessageLoop(currentUser.wishList.get(i).toString());
 		}
 	}
-	public static void updateNewReleases()
+	public static void applyFees()
 	{
-		itemDatabase.getInstance();
-		//for(int i = 0; i < itemDatabase.database.size(); i++)
-		//{
-			//if(itemDatabase.getInstance().database.get(i).isNew() == true && getTimePassed(itemDatabase.getInstance().database.get(i).getReleaseDate(), getDate()) >= 14)
-			//{
-				//itemDatabase.getInstance().database.get(i).setIsNew(false);
-			//}
-		//}
+		if(feesAppliedThisUser == false && currentUser != null)
+		{
+			DateTime dateTime = new DateTime();
+			for(int i = 0; i < currentUser.checkedOutList.size(); i++)
+			{
+				if(dateTime.isAfter(Long.valueOf(currentUser.checkedOutList.get(i).getDueDate())))
+				{
+					currentUser.addToFeeTotal(0.01);
+				}
+			}
+			
+			feesAppliedThisUser = true;
+		}
 	
 	}
 	public static void updateAccountTypes()
@@ -253,11 +278,6 @@ public class startPage {
 	}
 	//Helper Methods ----------------------------------------------------------------------------
 	//these are static so feel free to use these where ever they would help!
-	
-	//public static user getCurrentUser()
-	//{
-		
-	//}
 	
 	/* Returns date in String in this format: yyyy/dd/MM HH:mm:ss
 	 * @param none
@@ -284,7 +304,7 @@ public class startPage {
 	    	dateTime = dateTime.plusDays(30);
 	    	DueDate = (dateTime.getYear() + "/" + dateTime.getMonthOfYear() + "/" + dateTime.getDayOfMonth());
 	    }
-	    System.out.println(dateTime);
+	    //System.out.println(dateTime);
 	    return DueDate;
 	}
 	/* Gives the current name of the library system in same format.

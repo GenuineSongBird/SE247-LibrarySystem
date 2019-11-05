@@ -22,6 +22,16 @@ public class itemDetailPage {
 			startPage.makeUserLookAtThisMessageLoop("There are no available copies of " + thisItem.getTitle() + " currently\nYou can put this item on hold for when a copy is available");
 			return;
 		}
+		if(startPage.currentUser.getFeeTotal() >= 100)
+		{
+			startPage.makeUserLookAtThisMessageLoop("The unpaid fees for " + startPage.currentUser.getName() + " are above the library limit of $100\n Please pay your fees to checkout additional books");
+			return;
+		}
+		if(startPage.currentUser.checkedOutList.size() >= startPage.currentUser.CheckoutLimitBehavior.checkoutLimit())
+		{
+			startPage.makeUserLookAtThisMessageLoop("Cannot checkout\nThe checkout limit for " + startPage.currentUser.getName() + " is " + startPage.currentUser.CheckoutLimitBehavior.checkoutLimit() + " items at a time.\nPlease return items to continue checking out");
+			return;
+		}
 		else
 		{
 			startPage.getLine();
