@@ -64,6 +64,27 @@ public class itemDetailPage {
 		startPage.makeUserLookAtThisMessageLoop("Successfully added " + startPage.currentUser.getName() + "'s comment to " + thisItem.getTitle() + "!");
 		return;
 	}
+	public void leaveRating(baseItem thisItem)
+	{
+		if( startPage.isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
+		{  return; }
+		Scanner key = new Scanner(System.in);
+		System.out.println("Please enter your rating for " + thisItem.getTitle());
+		String rating = key.nextLine();
+		while(rating.matches("-?\\d+") == false || rating.matches("-?\\d+") == true && Integer.valueOf(rating) < 0 || rating.matches("-?\\d+") == true && Integer.valueOf(rating) > 5) 
+		{ 
+			System.out.println("Rating must be a number between 0 and 5"); 
+			System.out.println("Please enter your rating for " + thisItem.getTitle());
+			rating = key.nextLine(); 
+			}
+		itemDatabase.database.remove(thisItem);
+		thisItem.addRatingAmount();
+		double ratingDouble = (Double.valueOf(thisItem.getRating()) + Double.valueOf(rating))/thisItem.getRatingAmount();
+		thisItem.setRating(ratingDouble);
+		itemDatabase.database.add(thisItem);
+		startPage.makeUserLookAtThisMessageLoop("Successfully added " + startPage.currentUser.getName() + "'s rating to " + thisItem.getTitle() + "!");
+		return;
+	}
 	public void viewComments(baseItem thisItem)
 	{
 		if(thisItem.getRatingComments().isEmpty() )
@@ -101,7 +122,7 @@ public class itemDetailPage {
 		System.out.println(thisItem.toString());
 		if( startPage.isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
 		{  return; }
-		String[] choices = {"Checkout", "Put on hold","View hold list","Add to wish list","View comments", "Leave a comment","Return to home menu"};
+		String[] choices = {"Checkout", "Put on hold","View hold list","Add to wish list","View comments", "Leave a comment","Leave a rating","Return to home menu"};
 		choice = startPage.getUserChoice(choices, choices.length);
 		getResponseForChoice(choice, thisItem);
 	}
@@ -134,6 +155,9 @@ public class itemDetailPage {
 				return;
 			case 6:
 				leaveComments(thisItem);
+				return;
+			case 7:
+				leaveRating(thisItem);
 				return;
 		}
 	}

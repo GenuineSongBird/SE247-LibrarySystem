@@ -11,6 +11,7 @@ public abstract class baseItem {
 		private String genre;
 		private boolean isNew;
 		private int numCopies;
+		private int ratingAmount;
 		private LinkedList<String> ratingComments = new LinkedList<String>();
 		private Queue<baseUser> holds = new LinkedList<>();
 		
@@ -30,7 +31,14 @@ public abstract class baseItem {
 			+ "\nGenre: " + this.genre 
 			+ "\nAvailable Copies: " + this.numCopies;
 		}
-
+		public void addRatingAmount()
+		{
+			ratingAmount = ratingAmount + 1;
+		}
+		public int getRatingAmount()
+		{
+			return ratingAmount;
+		}
 		public void addCopy() {
 			this.numCopies++;
 		}
