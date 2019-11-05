@@ -74,6 +74,7 @@ public class loginPage {
 					System.out.println("Login successful!");
 					startPage.changeToCurrentUser(userDatabase.database.get(i));
 					startPage.feesAppliedThisUser = false;
+					startPage.checkedForAvailableHolds = false;
 					return true;
 				}
 			}

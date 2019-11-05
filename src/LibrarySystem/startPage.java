@@ -22,6 +22,7 @@ import org.joda.time.DateTime;
 public class startPage {
 	static baseUser currentUser = null;	
 	static boolean feesAppliedThisUser = false;
+	static boolean checkedForAvailableHolds = false;
 	public static void main(String[] args) {
 		itemDatabase iDatabase  = itemDatabase.getInstance();
 		iDatabase.loadDatabase();
@@ -45,7 +46,10 @@ public class startPage {
 		//The home screen
 		while( exitProgram == false ) //infinite menu loop
 		{
+			//if(currentUser != null) {  }
 			applyFees();
+			checkForHolds();
+			if(currentUser != null) { if(currentUser.checkedOutList.size() != 0) { for(int i = 0; i < itemDatabase.database.size(); i++) { itemDatabase.database.get(i).setNumCopies(100);checkedForAvailableHolds = false;} } }
 			System.out.println(getTitle());
 			System.out.println("Untitled Version 0.4 Date: " + getDate());
 			if(isUserLoggedIn() == false) { System.out.println("Not currently logged in."); } else { System.out.println("Welcome, "+currentUser.getName()+ "!"); }
@@ -262,6 +266,23 @@ public class startPage {
 			feesAppliedThisUser = true;
 		}
 	
+	}
+	public static void checkForHolds()
+	{
+		if(checkedForAvailableHolds == false && currentUser != null)
+		{
+			for(int i = 0; i < itemDatabase.database.size(); i++)
+			{
+				
+				if(itemDatabase.database.get(i).getHolds().isEmpty() == false && itemDatabase.database.get(i).getHolds().peek().getName().equalsIgnoreCase(currentUser.getName()) && itemDatabase.database.get(i).getNumCopies() > 0) // if we are on hold for this item
+				{
+						
+					makeUserLookAtThisMessageLoop(itemDatabase.database.get(i).getTitle() + " is now available for checkout!"); //alert the user, once only
+				}
+				
+			}
+			checkedForAvailableHolds = true;
+		}
 	}
 	public static void updateAccountTypes()
 	{
