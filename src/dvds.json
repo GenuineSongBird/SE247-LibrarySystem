@@ -35,5 +35,14 @@
     "actors": ["Owen Wilson", "Vince Vaughn"],
     "numCopies":2,
     "newArrival":false
-  },
+  },{
+  	"id":13,
+  	"title":"Dante's Peak",
+  	"year":1997,
+    "genre": "disaster thriller",
+    "director":"Roger Donaldson",
+    "actors": ["Pierce Brosnan", "Linda Hamilton"],
+    "numCopies":2,
+    "newArrival":false
+  }, 
 ]}

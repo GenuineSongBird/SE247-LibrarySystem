@@ -40,4 +40,26 @@
     "numCopies":2,
     "newArrival":false
   }
+  ,{
+    "id":5,
+    "title":"Hitchhiker's guide to the galaxy",
+    "year":1979,
+    "genre": "Satire Fiction",
+    "ISBN":"1535185554",
+    "publisher":"Del Rey",
+    "author":"Douglas Adams",
+    "numCopies":2,
+    "newArrival":false
+  }
+  ,{
+    "id":6,
+    "title":"To kill a mockingbird",
+    "year":1960,
+    "genre": "Classic Coming of Age Fiction",
+    "ISBN":"1451635622",
+    "publisher":"Harper",
+    "author":"Harper Lee",
+    "numCopies":0,
+    "newArrival":false
+  }
 ]}

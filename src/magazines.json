@@ -39,5 +39,15 @@
     "issue":2,
     "numCopies":5,
     "newArrival":false
+  },{
+  	"id":9,
+  	"title":"Popular Mechanics Issue 7",
+  	"year":1905,
+    "genre": "Engineering",
+    "publisher":"Hearst Media",
+    "volume": 7,
+    "issue":2,
+    "numCopies":5,
+    "newArrival":false
   }
 ]}

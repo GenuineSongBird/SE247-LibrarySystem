@@ -72,6 +72,7 @@ public class itemDatabase {
 				int numCopies = ((Long) dvdJSON.get("numCopies")).intValue();
 				boolean isNew = (Boolean)dvdJSON.get("newArrival");
 				itemDVD newItem = new itemDVD(title, genre, year, numCopies, isNew, director);
+				System.out.println("itemDatabase: Loaded " + title);
 				for(int j = 0; j < actors.size(); j++) {
 					String actor = (String)actors.get(j);
 					newItem.addActor(actor);
@@ -101,6 +102,7 @@ public class itemDatabase {
 				int numCopies = ((Long) magJSON.get("numCopies")).intValue();
 				boolean isNew = (Boolean) magJSON.get("newArrival");
 				this.addItem(new itemMagazine(title, genre, year, numCopies, isNew, publisher, volume, issue));
+				System.out.println("itemDatabase: Loaded " + title);
 			}
 		}
 		catch(Exception e) {
