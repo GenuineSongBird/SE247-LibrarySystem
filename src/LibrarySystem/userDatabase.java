@@ -69,7 +69,36 @@ public class userDatabase {
 				String password = (String)userJSON.get("passWord");
 				userPatron userAccount = new userPatron(name,age,phoneNum,address,email,accNum, feeTotal,password);
 				
-				this.addUser(userAccount);
+				if(userType == "Patron")
+				{
+					userPatron userAccount = new userPatron(name,age,phoneNum,address,email,accNum, feeTotal,password);
+					this.addUser(userAccount);
+				}
+				
+				if(userType == "Admin")
+				{
+					userAdmin userAccount = new userAdmin(name,age,phoneNum,address,email,accNum, feeTotal,password);
+					this.addUser(userAccount);
+				}
+				
+				if(userType == "Librarian")
+				{
+					userLibrarian userAccount = new userLibrarian(name,age,phoneNum,address,email,accNum, feeTotal,password);
+					this.addUser(userAccount);
+				}
+				
+				if(userType == "Teacher")
+				{
+					userTeacher userAccount = new userTeacher(name,age,phoneNum,address,email,accNum, feeTotal,password);
+					this.addUser(userAccount);
+				}
+				
+				if(userType == "Child")
+				{
+					userChild userAccount = new userChild(name,age,phoneNum,address,email,accNum, feeTotal,password);
+					this.addUser(userAccount);
+				}
+				
 				System.out.println("itemDatabase: Loaded " + name);
 			}
 			reader.close();
