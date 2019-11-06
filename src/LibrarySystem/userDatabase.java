@@ -3,7 +3,13 @@ package LibrarySystem;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser
+
 public class userDatabase {
+	
+	private static final String USER_FILE_NAME = "src/users.json";
 	
 	private static userDatabase userDatabase;
 	
@@ -36,11 +42,37 @@ public class userDatabase {
 		database.add(thisUser);
 		return thisUser;
 	}
-	public boolean loadDatabase()
+	public void loadDatabase()
 	{
-		boolean loadStatus = false;
+		{
+		try {
+			FileReader reader = new FileReader(USER_FILE_NAME);
+			JSONParser parser = new JSONParser();
+			JSONObject jsonData = (JSONObject)new JSONParser().parse(reader);
+			JSONArray usersJSON = (JSONArray)jsonData.get("users");
+
+			
+			for(int i = 0; i < usersJSON.size(); i++) {
+				JSONObject userJSON = (JSONObject)usersJSON.get(i);
+				String name = (String)userJSON.get("name");
+				int age = ((Long) userJSON.get("age")).intValue();
+				String phoneNum = (String)userJSON.get("phoneNum");
+				String address = (String)userJSON.get("author");
+				String email = ((String) userJSON.get("email"));
+				int accNum = ((Long)userJSON.get("accNum")).intValue();
+				double feeTotal = (Double)userJSON.get("feeTotal");
+				String password = (String)userJSON.get("passWord");
+				userPatron userAccount = new userPatron(name,age,phoneNum,address,email,accNum, feeTotal,password);
+				
+				this.addUser(userAccount);
+				System.out.println("itemDatabase: Loaded " + name);
+			}
+			reader.close();
+		}
+		catch (Exception e) {
+			System.out.println(e);
+		}
 		
-		return loadStatus;
 	}
 	public int getSize()
 	{
