@@ -42,6 +42,11 @@ public class userDatabase {
 		database.add(thisUser);
 		return thisUser;
 	}
+	
+	private void addUser(baseUser anUser) {
+		database.add(anUser);
+	}
+	
 	public void loadDatabase()
 	{
 		{
