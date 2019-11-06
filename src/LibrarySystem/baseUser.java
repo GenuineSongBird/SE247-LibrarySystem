@@ -21,6 +21,14 @@ public abstract class baseUser {
 	LinkedList<baseItem> wishList = new LinkedList<baseItem>();
 	LinkedList<baseItem> checkedOutList = new LinkedList<baseItem>();
 	private String password;
+	private boolean flagged = false;
+	public boolean isFlagged() {
+		return flagged;
+	}
+
+	public void setFlagged(boolean flagged) {
+		this.flagged = flagged;
+	}
 	checkoutLimitBehavior CheckoutLimitBehavior;
 
 	private boolean feeTotalExceeded = false;

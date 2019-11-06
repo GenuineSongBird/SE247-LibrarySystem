@@ -33,7 +33,8 @@ public class startPage {
 		updateAccountTypes();
 		String[] choices = {"Login or create account","Logout","Browse available items","View fees","Pay fees","Return item","View holds","View wishlist","View checked out items"};
 		//for testing admin functionalities
-		//currentUser = new userAdmin("admin", 0, "a", "a", "a", 0, 0, "a");
+		//currentUser = new userLibrarian("librarian", 0, "a", "a", "a", 0, 0, "a");
+		//userDatabase.database.add(new userPatron("John", 0, "a", "a", "a", 0, 0, "a"));
 		//
 		if(currentUser != null && (currentUser.getType().equalsIgnoreCase("Admin")))
 		{
@@ -54,7 +55,7 @@ public class startPage {
 			//if(currentUser != null) { if(currentUser.checkedOutList.size() != 0) { for(int i = 0; i < itemDatabase.database.size(); i++) { itemDatabase.database.get(i).setNumCopies(100);checkedForAvailableHolds = false;} } }
 			//
 			System.out.println(getTitle());
-			System.out.println("Untitled Version 0.4 Date: " + getDate());
+			System.out.println("Untitled Version 1.0 Date: " + getDate());
 			if(isUserLoggedIn() == false) { System.out.println("Not currently logged in."); } else { System.out.println("Welcome, "+currentUser.getName()+ "!"); }
 			int usersChoice = getUserChoice(choices, choices.length);
 			getResponseForChoice(usersChoice);
@@ -122,6 +123,21 @@ public class startPage {
 				return;
 			case 9:
 				currentUser.viewCheckedOutList();
+				return;
+			case 10:
+				 System.out.println("Please enter the information for the user you would like to create");loginPage.createNewUser(); 
+				return;
+			case 11:
+				removeUser();
+				return;
+			case 12:
+				addAnItem();
+				return;
+			case 13:
+				viewUserAcctInfo();
+				return;
+			case 14:
+				flagUser();
 				return;
 		}
 		
@@ -299,6 +315,59 @@ public class startPage {
 	
 			}
 		}
+	}
+	public static void addAnItem()
+	{
+		
+		System.out.println("Please choose which item to add a copy to");
+		String[] allItems = new String[itemDatabase.database.size()];
+		for(int i = 0; i < itemDatabase.database.size(); i++)
+		{
+			allItems[i] = itemDatabase.database.get(i).getTitle();
+		}
+		int userChoice = getUserChoice(allItems, allItems.length);
+		itemDatabase.database.get(userChoice-1).addCopy();
+		makeUserLookAtThisMessageLoop("Successfully added a copy to " + itemDatabase.database.get(userChoice-1).getTitle());
+	}
+	public static void removeUser()
+	{
+		if(userDatabase.database.size() == 0) { makeUserLookAtThisMessageLoop("The user database is empty\nNo users to remove"); return;}
+		System.out.println("Please choose the account to remove");
+		String[] allItems = new String[userDatabase.database.size()];
+		for(int i = 0; i < userDatabase.database.size(); i++)
+		{
+			allItems[i] = userDatabase.database.get(i).getName();
+		}
+		int userChoice = getUserChoice(allItems, allItems.length);	
+		makeUserLookAtThisMessageLoop("Successfully removed " + userDatabase.database.get(userChoice-1).getName() + "!");
+		userDatabase.database.remove(userDatabase.database.get(userChoice-1));
+	}
+	public static void viewUserAcctInfo()
+	{
+		if(userDatabase.database.size() == 0) { makeUserLookAtThisMessageLoop("The user database is empty\nNo users to view"); return;}
+		System.out.println("Please choose the account to view");
+		String[] allItems = new String[userDatabase.database.size()];
+		for(int i = 0; i < userDatabase.database.size(); i++)
+		{
+			allItems[i] = userDatabase.database.get(i).getName();
+		}
+		int userChoice = getUserChoice(allItems, allItems.length);
+		userDatabase.database.get(userChoice-1).display();
+		makeUserLookAtThisMessageLoop("");
+	}
+	public static void flagUser()
+	{
+		if(userDatabase.database.size() == 0) { makeUserLookAtThisMessageLoop("The user database is empty\nNo users to flag"); return;}
+		System.out.println("Please choose the account to flag");
+		String[] allItems = new String[userDatabase.database.size()];
+		for(int i = 0; i < userDatabase.database.size(); i++)
+		{
+			allItems[i] = userDatabase.database.get(i).getName();
+		}
+		int userChoice = getUserChoice(allItems, allItems.length);
+		userDatabase.database.get(userChoice-1).display();
+		userDatabase.database.get(userChoice-1).setFlagged(true);
+		makeUserLookAtThisMessageLoop(userDatabase.database.get(userChoice-1).getName() + " has been flagged");
 	}
 	//Helper Methods ----------------------------------------------------------------------------
 	//these are static so feel free to use these where ever they would help!

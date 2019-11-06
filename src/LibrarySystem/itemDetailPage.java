@@ -126,7 +126,7 @@ public class itemDetailPage {
 			startPage.makeUserLookAtThisMessageLoop(thisItem.getTitle() + " has no holds currently.");
 		}
 		else
-			startPage.makeUserLookAtThisMessageLoop("Next in the hold queue for " + thisItem.getTitle() + " is " + thisItem.getHolds().peek().getName());
+			startPage.makeUserLookAtThisMessageLoop("Next in the hold queue for " + thisItem.getTitle() + " is " + thisItem.getHolds().peek().getName() + "\nThere are " + thisItem.getHolds().size() + " total users on hold for this item");
 	}
 	public void addToWishList(baseItem thisItem)
 	{

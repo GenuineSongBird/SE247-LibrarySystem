@@ -46,7 +46,7 @@ public class loginPage {
 	 * @param none
 	 * @returns none
 	 */
-	public void createNewUser()
+	public static void createNewUser()
 	{
 		boolean successfulCreation;
 		userCreationPage userCreationPage = new userCreationPage();
