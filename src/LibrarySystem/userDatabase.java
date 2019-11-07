@@ -2,10 +2,11 @@ package LibrarySystem;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.io.FileReader;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser
+import org.json.simple.parser.JSONParser;
 
 public class userDatabase {
 	
@@ -13,7 +14,7 @@ public class userDatabase {
 	
 	private static userDatabase userDatabase;
 	
-	static LinkedList<baseUser> database = new LinkedList<baseUser>(); 
+	public static LinkedList<baseUser> database = new LinkedList<baseUser>(); 
 	
 	private userDatabase() {
 		loadDatabase();
@@ -43,13 +44,10 @@ public class userDatabase {
 		return thisUser;
 	}
 	
-	private void addUser(baseUser anUser) {
-		database.add(anUser);
-	}
+	
 	
 	public void loadDatabase()
 	{
-		{
 		try {
 			FileReader reader = new FileReader(USER_FILE_NAME);
 			JSONParser parser = new JSONParser();
@@ -59,47 +57,48 @@ public class userDatabase {
 			
 			for(int i = 0; i < usersJSON.size(); i++) {
 				JSONObject userJSON = (JSONObject)usersJSON.get(i);
-				String name = (String)userJSON.get("name");
+				String name = (String)userJSON.get("firstName");
+				//System.out.println(name);
 				int age = ((Long) userJSON.get("age")).intValue();
-				String phoneNum = (String)userJSON.get("phoneNum");
-				String address = (String)userJSON.get("author");
+				String phoneNum = (String)userJSON.get("phone");
+				String address = (String)userJSON.get("address");
 				String email = ((String) userJSON.get("email"));
-				int accNum = ((Long)userJSON.get("accNum")).intValue();
-				double feeTotal = (Double)userJSON.get("feeTotal");
-				String password = (String)userJSON.get("passWord");
-				userPatron userAccount = new userPatron(name,age,phoneNum,address,email,accNum, feeTotal,password);
+				int accNum = ((Long)userJSON.get("id")).intValue();
+				double feeTotal = (Double)userJSON.get("fines");
+				String password = (String)userJSON.get("password");
+				String userType = (String)userJSON.get("type");
 				
-				if(userType == "Patron")
+				if(userType.equalsIgnoreCase("Patron"))
 				{
 					userPatron userAccount = new userPatron(name,age,phoneNum,address,email,accNum, feeTotal,password);
-					this.addUser(userAccount);
+					database.add(userAccount);
 				}
 				
-				if(userType == "Admin")
+				if(userType.equalsIgnoreCase("Admin"))
 				{
 					userAdmin userAccount = new userAdmin(name,age,phoneNum,address,email,accNum, feeTotal,password);
-					this.addUser(userAccount);
+					database.add(userAccount);
 				}
 				
-				if(userType == "Librarian")
+				if(userType.equalsIgnoreCase("Librarian"))
 				{
 					userLibrarian userAccount = new userLibrarian(name,age,phoneNum,address,email,accNum, feeTotal,password);
-					this.addUser(userAccount);
+					database.add(userAccount);
 				}
 				
-				if(userType == "Teacher")
+				if(userType.equalsIgnoreCase("Teacher"))
 				{
 					userTeacher userAccount = new userTeacher(name,age,phoneNum,address,email,accNum, feeTotal,password);
-					this.addUser(userAccount);
+					database.add(userAccount);
 				}
 				
-				if(userType == "Child")
+				if(userType.equalsIgnoreCase("Child"))
 				{
 					userChild userAccount = new userChild(name,age,phoneNum,address,email,accNum, feeTotal,password);
-					this.addUser(userAccount);
+					database.add(userAccount);
 				}
 				
-				System.out.println("itemDatabase: Loaded " + name);
+				System.out.println("userDatabase: Loaded " + name);
 			}
 			reader.close();
 		}
