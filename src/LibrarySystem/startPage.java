@@ -48,6 +48,7 @@ public class startPage {
 		while( exitProgram == false ) //infinite menu loop
 		{
 			//if(currentUser != null) {  }
+			System.out.println(userDatabase.database.size());
 			applyFees();
 			checkForHolds();
 			//
@@ -228,6 +229,11 @@ public class startPage {
 			while (payThisMuch.matches("-?\\d+") == false)
 			{
 				System.out.println("Please enter a number for how much you would like to pay");
+				payThisMuch = key.nextLine();
+			}
+			while ((Double.valueOf(payThisMuch) > Double.valueOf(fees))==true)
+			{
+				System.out.println("You can not pay off more than what you owe\nPlease enter a number for how much you would like to pay");
 				payThisMuch = key.nextLine();
 			}
 			Double resultingFee = Double.valueOf(Double.valueOf(fees) - Double.valueOf(payThisMuch));
