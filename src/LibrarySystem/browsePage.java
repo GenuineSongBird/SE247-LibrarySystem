@@ -115,7 +115,7 @@ public class browsePage {
 		LinkedList<baseItem> results = new LinkedList<baseItem>();
 		for(int i = 0; i < itemDatabase.database.size(); i++)
 		{
-			if(itemDatabase.database.get(i).getTitle().contains(title.toLowerCase()))
+			if(itemDatabase.database.get(i).getTitle().toLowerCase().contains(title.toLowerCase()))
 			{
 				results.add(itemDatabase.database.get(i));
 			}
@@ -205,7 +205,7 @@ public class browsePage {
 		LinkedList<baseItem> results = new LinkedList<baseItem>();
 		for(int i = 0; i < itemDatabase.database.size(); i++)
 		{
-			if(itemDatabase.database.get(i).getGenre().contains(genre))
+			if(itemDatabase.database.get(i).getGenre().toLowerCase().contains(genre.toLowerCase()))
 			{
 				results.add(itemDatabase.database.get(i));
 			}
@@ -235,7 +235,7 @@ public class browsePage {
 		LinkedList<baseItem> results = new LinkedList<baseItem>();
 		for(int i = 0; i < itemDatabase.database.size(); i++)
 		{
-			if(itemDatabase.database.get(i).getDescription().contains(Description))
+			if(itemDatabase.database.get(i).getDescription().toLowerCase().contains(Description.toLowerCase()))
 			{
 				results.add(itemDatabase.database.get(i));
 			}
