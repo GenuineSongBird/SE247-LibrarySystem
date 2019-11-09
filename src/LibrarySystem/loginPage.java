@@ -7,10 +7,10 @@
  * Date: 10/24/2019
  */
 package LibrarySystem;
-import java.util.Iterator;
 import java.util.Scanner;
 
 public class loginPage {
+	//When loginPage is constructed, the user is offered login related choices.
 	public loginPage()
 	{
 		int choice = 0;
@@ -57,9 +57,9 @@ public class loginPage {
 			System.out.println("Account successfully created!\nYou are now logged in!");
 		//startPage.makeUserLookAtThisMessageLoop("This feature will be added once databases are ready");
 	}
-	/* allows the user to login to an account. True if successful, false if fails.
+	/* allows the user to login to an account. 
 	 * @param users password, users name
-	 * @returns boolean
+	 * @returns Boolean true if successful, false if fails.
 	 */
 	public boolean login( String password, String name)
 	{

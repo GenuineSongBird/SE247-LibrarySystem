@@ -23,7 +23,6 @@ public class userDatabase {
 	
 	public static userDatabase getInstance() {
 	if (userDatabase == null) {
-		System.out.println("Creating a user database");
 		userDatabase = new userDatabase();
 		}
 	return userDatabase;

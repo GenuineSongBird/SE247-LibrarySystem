@@ -10,6 +10,7 @@ package LibrarySystem;
 import java.util.Scanner;
 
 public class userCreationPage {
+	//This class instructs the user on how to make an account, then, if successful, puts that account in the userDatabase.
 	public boolean createAccount()
 	{
 		startPage.getLine();
@@ -38,7 +39,7 @@ public class userCreationPage {
 			age = key.nextLine();
 		}
 		baseUser thisUser = userDatabase.getInstance().createUser(name, Integer.valueOf(age), phoneNumber, address, email, password);
-		startPage.changeToCurrentUser(thisUser);
+		startPage.changeToCurrentUser(thisUser); //The user is logged in after creating their account.
 		return true;
 	}
 }

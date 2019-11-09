@@ -2,7 +2,7 @@
  * This class allows the user to browse through the item database through a variety of search methods.
  * 
  * Team: Untitled: Nick Bautista, Tyson Medlin, Luis Canales
- * Main programmer(s) of this class: 
+ * Main programmer(s) of this class: Tyson Medlin
  * Date: 10/24/2019
  */
 package LibrarySystem;
@@ -13,18 +13,23 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
 public class browsePage {
-	public browsePage()
-	{
-	}
+	public browsePage() {}
+	/* Displays to the user the choices they are offered for browsing items in this system.
+	 * @param none
+	 * @returns none
+	 */
 	public void browse()
 	{
-		itemDetailPage itemDetailPage = new itemDetailPage();
 		int choice = 0;
 		startPage.getLine();
 		String[] choices = {"View new releases", "Search by title","Search by rating","Search by year","Search by genre","Search by description","Request an item to be added","Return to home"};
 		choice = startPage.getUserChoice(choices, choices.length);
 		getResponseForChoice(choice);
 	}
+	/* Gets the appropriate response matching the user's desired response.
+	 * @param The users choice of response.
+	 * @returns none
+	 */
 	private void getResponseForChoice(int usersChoice)
 	{
 		Scanner key = new Scanner(System.in);
@@ -53,6 +58,10 @@ public class browsePage {
 		}
 		
 	}
+	/* Searches through the item database for the users desired items.
+	 * @param The string information the user would like to search the item database with.
+	 * @returns the string items in the item database matching the users desires.
+	 */
 	private String gatherSearchByInfo( String thisInfo )
 	{
 		Scanner key = new Scanner(System.in);
@@ -63,6 +72,10 @@ public class browsePage {
 			gatheredInfo = ensureInfoCorrectType(gatheredInfo, thisInfo);
 		return gatheredInfo;
 	}
+	/* If the user searches through the item database anything number related, ensures the user only uses numbers to search with.
+	 * @param The string information the user would like to search the item database with.
+	 * @returns the string items in the item database matching the users desires.
+	 */
 	private String ensureInfoCorrectType(String gatheredInfo, String thisInfo)
 	{
 		Scanner key = new Scanner(System.in);
@@ -78,10 +91,12 @@ public class browsePage {
 		}
 		return gatheredInfo;
 	}
+	/* Displays to the user the items in item database labeled new releases
+	 * @param none
+	 * @returns none
+	 */
 	public void viewNewReleases()
-	{
-		itemDatabase.getInstance();
-		
+	{	
 		int choice = 0;
 		LinkedList<baseItem> results = new LinkedList<baseItem>();
 		for(int i = 0; i < itemDatabase.database.size(); i++)
@@ -106,9 +121,12 @@ public class browsePage {
 		itemDetailPage.getDetails(results.get(choice - 1));
 		
 	}
+	/* Searches through the item database for results matching the users entered title, displays appropriate results.
+	 * @param String of the title the user would like to search with
+	 * @returns none
+	 */
 	public void searchByTitle( String title )
 	{
-		//startPage.makeUserLookAtThisMessageLoop("This feature will be added once databases are ready");
 		itemDatabase.getInstance();
 		
 		int choice = 0;
@@ -134,9 +152,12 @@ public class browsePage {
 		itemDetailPage itemDetailPage = new itemDetailPage();
 		itemDetailPage.getDetails(results.get(choice - 1));
 	}
+	/* Searches through the item database for results matching the users entered rating, displays appropriate results.
+	 * @param String of the rating the user would like to search with
+	 * @returns none
+	 */
 	public void searchByRating( String rating )
 	{
-		//startPage.makeUserLookAtThisMessageLoop("This feature will be added once databases are ready");
 		itemDatabase.getInstance();
 		
 		int choice = 0;
@@ -163,12 +184,13 @@ public class browsePage {
 		choice = startPage.getUserChoiceAndPrintSpecial(resultsTitle, results.size(), resultsRating);
 		itemDetailPage itemDetailPage = new itemDetailPage();
 		itemDetailPage.getDetails(results.get(choice-1));
-
-
 	}
+	/* Searches through the item database for results matching the users entered year of release, displays appropriate results.
+	 * @param String of the year the user would like to search with
+	 * @returns none
+	 */
 	public void searchByYear( String year )
 	{
-		//startPage.makeUserLookAtThisMessageLoop("This feature will be added once databases are ready");
 		itemDatabase.getInstance();
 		
 		int choice = 0;
@@ -196,9 +218,12 @@ public class browsePage {
 		itemDetailPage itemDetailPage = new itemDetailPage();
 		itemDetailPage.getDetails(results.get(choice-1));
 	}
+	/* Searches through the item database for results matching the users entered genre, displays appropriate results.
+	 * @param String of the genre the user would like to search with
+	 * @returns none
+	 */
 	public void searchByGenre( String genre )
 	{
-		//startPage.makeUserLookAtThisMessageLoop("This feature will be added once databases are ready");
 		itemDatabase.getInstance();
 		
 		int choice = 0;
@@ -226,9 +251,12 @@ public class browsePage {
 		itemDetailPage itemDetailPage = new itemDetailPage();
 		itemDetailPage.getDetails(results.get(choice-1));
 	}
+	/* Searches through the item database for results matching the users entered description, displays appropriate results. Works through comparison of description text.
+	 * @param String of the description the user would like to search with
+	 * @returns none
+	 */
 	public void searchByDescription( String Description )
 	{
-		//startPage.makeUserLookAtThisMessageLoop("This feature will be added once databases are ready");
 		itemDatabase.getInstance();
 		
 		int choice = 0;
@@ -254,6 +282,10 @@ public class browsePage {
 		itemDetailPage itemDetailPage = new itemDetailPage();
 		itemDetailPage.getDetails(results.get(choice-1));
 	}
+	/* Allows the user to add a recommendation of their choice to a saved list of recommendations
+	 * @param none
+	 * @returns none
+	 */
 	public void addToRequestList() 
 	{
 		if( startPage.isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
@@ -272,38 +304,8 @@ public class browsePage {
 			writer.println(year);
 			writer.close();
 		} catch (FileNotFoundException | UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		startPage.makeUserLookAtThisMessageLoop("Your request has been added for consideration.\nThank you");
 	}
-	public void searchByTitleReturn( String title )
-	{
-		//startPage.makeUserLookAtThisMessageLoop("This feature will be added once databases are ready");
-		itemDatabase.getInstance();
-		
-		int choice = 0;
-		LinkedList<baseItem> results = new LinkedList<baseItem>();
-		for(int i = 0; i < itemDatabase.database.size(); i++)
-		{
-			if(itemDatabase.database.get(i).getTitle().contains(title.toLowerCase()))
-			{
-				results.add(itemDatabase.database.get(i));
-			}
-		}
-		if(results.size() == 0)
-		{
-			startPage.makeUserLookAtThisMessageLoop("No results found with title of " + title);
-			return;
-		}
-		String[] resultsTitle = new String[results.size()];
-		for(int i = 0; i < results.size(); i++) 
-		{ 
-			resultsTitle[i] = results.get(i).getTitle();
-		}
-		choice = startPage.getUserChoice(resultsTitle, results.size());
-		itemDetailPage itemDetailPage = new itemDetailPage();
-		itemDetailPage.getDetailsReturn(results.get(choice - 1));
-	}
-	
 }

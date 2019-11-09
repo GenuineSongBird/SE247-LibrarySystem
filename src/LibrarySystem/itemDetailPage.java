@@ -2,17 +2,18 @@
  * This class should display the item info in detail and offer specific options for this specific item
  * 
  * Team: Untitled: Nick Bautista, Tyson Medlin, Luis Canales
- * Main programmer(s) of this class: 
+ * Main programmer(s) of this class: Tyson Medlin
  * Date: 10/24/2019
  */
 package LibrarySystem;
 import java.util.Scanner;
 
 public class itemDetailPage {
-	public itemDetailPage() //this is the constructor, display the info here.
-	{
-
-	}
+	public itemDetailPage() {}
+	/* Ensures a user is allowed to checkout an item, then checks out that item to the current user.
+	 * @param An item to checkout
+	 * @returns none
+	 */
 	public void checkout(baseItem thisItem)
 	{
 		if( startPage.isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
@@ -50,6 +51,10 @@ public class itemDetailPage {
 		}
 		
 	}
+	/* Places the current user onto the hold queue for a item
+	 * @param The item for the user to be put on hold to
+	 * @returns none
+	 */
 	public void putOnHold(baseItem thisItem)
 	{
 		if( startPage.isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
@@ -69,6 +74,10 @@ public class itemDetailPage {
 			return;
 		}
 	}
+	/* Allows the current user to add a string comment to the selected item
+	 * @param The item for the users comments to be attached to
+	 * @returns none
+	 */
 	public void leaveComments(baseItem thisItem)
 	{
 		if( startPage.isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
@@ -82,6 +91,10 @@ public class itemDetailPage {
 		startPage.makeUserLookAtThisMessageLoop("Successfully added " + startPage.currentUser.getName() + "'s comment to " + thisItem.getTitle() + "!");
 		return;
 	}
+	/* Allows the user to leave a rating for the selected item
+	 * @param The item for the users rating to be referencing.
+	 * @returns none
+	 */
 	public void leaveRating(baseItem thisItem)
 	{
 		if( startPage.isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
@@ -103,6 +116,10 @@ public class itemDetailPage {
 		startPage.makeUserLookAtThisMessageLoop("Successfully added " + startPage.currentUser.getName() + "'s rating to " + thisItem.getTitle() + "!");
 		return;
 	}
+	/* Displays the comments attached to the selected item.
+	 * @param The item to display the comments of.
+	 * @returns none
+	 */
 	public void viewComments(baseItem thisItem)
 	{
 		if(thisItem.getRatingComments().isEmpty() )
@@ -119,6 +136,10 @@ public class itemDetailPage {
 			return;
 		}
 	}
+	/* Displays the next in the hold queue for the selected item.
+	 * @param The item to display the next in the hold queue of.
+	 * @returns none
+	 */
 	public void viewHoldList(baseItem thisItem)
 	{
 		if(thisItem.getHolds().isEmpty())
@@ -128,12 +149,20 @@ public class itemDetailPage {
 		else
 			startPage.makeUserLookAtThisMessageLoop("Next in the hold queue for " + thisItem.getTitle() + " is " + thisItem.getHolds().peek().getName() + "\nThere are " + thisItem.getHolds().size() + " total users on hold for this item");
 	}
+	/* Adds the selected item to the current users wish list.
+	 * @param The item to add to the current users wish list.
+	 * @returns none
+	 */
 	public void addToWishList(baseItem thisItem)
 	{
 		startPage.currentUser.wishList.add(thisItem);
 		startPage.makeUserLookAtThisMessageLoop("Successfully added " + thisItem.getTitle() + " to " + startPage.currentUser.getName() + "'s wishlist!");
 	}
-	public  void getDetails(baseItem thisItem)
+	/* Displays the choices of a selected item and the details of said selected item
+	 * @param The item to select for choices.
+	 * @returns none
+	 */
+	public void getDetails(baseItem thisItem)
 	{
 		int choice;
 		startPage.getLine();
@@ -144,7 +173,11 @@ public class itemDetailPage {
 		choice = startPage.getUserChoice(choices, choices.length);
 		getResponseForChoice(choice, thisItem);
 	}
-	public  void getDetailsReturn(baseItem thisItem)
+	/* Adds a copy to a selected item, thus returning the item.
+	 * @param The item to return.
+	 * @returns none
+	 */
+	public void getDetailsReturn(baseItem thisItem)
 	{
 		startPage.getLine();
 		itemDatabase.database.remove(thisItem);
@@ -152,9 +185,12 @@ public class itemDetailPage {
 		startPage.makeUserLookAtThisMessageLoop(thisItem.toString() + "\n\nSuccessfully returned " + thisItem.getTitle() + "!");
 		itemDatabase.database.add(thisItem);
 	}
-	private  void getResponseForChoice(int usersChoice, baseItem thisItem)
+	/* Gets the appropriate response matching the user's desired response.
+	 * @param The users choice of response, the item that is currently selected..
+	 * @returns none
+	 */
+	private void getResponseForChoice(int usersChoice, baseItem thisItem)
 	{
-		Scanner key = new Scanner(System.in);
 		switch(usersChoice) {
 			case 1:
 				checkout(thisItem);

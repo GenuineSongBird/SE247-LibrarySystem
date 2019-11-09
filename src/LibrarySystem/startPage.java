@@ -8,53 +8,40 @@
  */
 package LibrarySystem;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
-import org.joda.time.DateTime;
+import org.joda.time.DateTime; //Is used for easier data management
 
 
 
 public class startPage {
-	static baseUser currentUser = null;	
-	static boolean feesAppliedThisUser = false;
-	static boolean checkedForAvailableHolds = false;
+	static baseUser currentUser = null;	//The current user, null if no current user.
+	static boolean feesAppliedThisUser = false; //When a user signs in, check for any fees to be updated once.
+	static boolean checkedForAvailableHolds = false; //When a user signs in, check for any alerts for that user once.
+	
 	public static void main(String[] args) {
 		itemDatabase iDatabase  = itemDatabase.getInstance();
-		iDatabase.loadDatabase();
-		userDatabase.getInstance();
+		iDatabase.loadDatabase(); //Prints out all loaded items in item database upon program start.
+		userDatabase.getInstance(); //Prints out all loaded users in user database upon program start.
 		Scanner key = new Scanner(System.in);
 		boolean exitProgram = false;
-		
-		updateAccountTypes();
+		updateAccountTypes(); //Checks if a child account is of age to become a patron account, turns that child account into a patron account.
 		String[] choices = {"Login or create account","Logout","Browse available items","View fees","Pay fees","Return item","View holds","View wishlist","View checked out items"};
-		//for testing admin functionalities
-		//currentUser = new userLibrarian("librarian", 0, "a", "a", "a", 0, 0, "a");
-		//userDatabase.database.add(new userPatron("John", 0, "a", "a", "a", 0, 0, "a"));
-		//
-		if(currentUser != null && (currentUser.getType().equalsIgnoreCase("Admin")))
+		if(currentUser != null && (currentUser.getType().equalsIgnoreCase("Admin"))) //If the current user is an admin display additional choices
 		{
 			choices = Stream.concat(Arrays.stream(choices), Arrays.stream(adminControls.adminChoicesArray())).toArray(String[]::new);
 		}
-		if(currentUser != null && (currentUser.getType().equalsIgnoreCase("Librarian")))
+		if(currentUser != null && (currentUser.getType().equalsIgnoreCase("Librarian")))  //If the current user is a librarian display additional choices
 		{
 			choices = Stream.concat(Arrays.stream(choices), Arrays.stream(librarianControls.librarianChoicesArray())).toArray(String[]::new);
 		}
 		//The home screen
-		while( exitProgram == false ) //infinite menu loop
+		while( exitProgram == false ) //infinite menu loop, user interaction begins here.
 		{
-			//if(currentUser != null) {  }
-			System.out.println(userDatabase.database.size());
 			applyFees();
 			checkForHolds();
-			//
-			//The below line of code tests the "alert user when item on hold is available feature. Instructions: 1: enable code. 2: put an item on hold. 3: check out any item 4: leave home menu then return. 5: see proof that the hold system works.
-			//if(currentUser != null) { if(currentUser.checkedOutList.size() != 0) { for(int i = 0; i < itemDatabase.database.size(); i++) { itemDatabase.database.get(i).setNumCopies(100);checkedForAvailableHolds = false;} } }
-			//
 			System.out.println(getTitle());
 			System.out.println("Untitled Version 1.0 Date: " + getDate());
 			if(isUserLoggedIn() == false) { System.out.println("Not currently logged in."); } else { System.out.println("Welcome, "+currentUser.getName()+ "!"); }
@@ -79,6 +66,11 @@ public class startPage {
 		}
 		return Integer.valueOf(userChoice);
 	}
+	/* display a set of choices in a string array with matching numbers and additional information, with ease.
+	 * @param choices: the string array of all the choices you want given,  availableChoices: The amount of choices in that array just mentioned,
+	 *  and a string array of additional info to be displayed for each choice
+	 * @returns the realistic user choice.
+	 */
 	public static int getUserChoiceAndPrintSpecial(String[] choices, int availableChoices, String[] special)
 	{
 		String userChoice = "0";
@@ -145,10 +137,18 @@ public class startPage {
 	}
 	
 	//Main Choice Methods ----------------------------------------------------------------------------
+	/* Allows the current user to login to a user account in the userDatabase by calling a class containing that function.
+	 * @param none
+	 * @returns none
+	 */
 	private static void login()
 	{
 		loginPage login = new loginPage();
 	}
+	/* If the current user is logged in, logs out the user.
+	 * @param none
+	 * @returns none
+	 */
 	private static void logout()
 	{
 		if( isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
@@ -156,12 +156,19 @@ public class startPage {
 		currentUser = null;
 		makeUserLookAtThisMessageLoop("You are now logged out.");
 	}
+	/* Allows the current user to browse the items in the library database by calling a class containing that function.
+	 * @param none
+	 * @returns none
+	 */
 	private static void browse()
 	{
-		//makeUserLookAtThisMessageLoop("This feature will be added once databases are ready"); //forces user to read the message before continuing.
 		browsePage browse = new browsePage();
 		browse.browse();
 	}
+	/* Prints the current users total fee amount.
+	 * @param none
+	 * @returns none
+	 */
 	private static void viewFee()
 	{
 		if( isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
@@ -173,6 +180,10 @@ public class startPage {
 			fees = "$ " + fees;
 		makeUserLookAtThisMessageLoop("Fee Amount: "+ fees);
 	}
+	/* Allows current user to return an item they have checked out.
+	 * @param none
+	 * @returns none
+	 */
 	private static void returnItem()
 	{
 		if( isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
@@ -206,6 +217,10 @@ public class startPage {
 
 		
 	}
+	/* Allows the current user to pay off their fees if they have any. Does not use real payment method.
+	 * @param none
+	 * @returns none
+	 */
 	private static void payFee()
 	{
 		if( isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
@@ -242,6 +257,10 @@ public class startPage {
 			currentUser.setFeeTotal(resultingFee);
 		}
 	}
+	/* Prints the current users holds they have placed on items
+	 * @param none
+	 * @returns none
+	 */
 	private static void viewHolds()
 	{
 		if( isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
@@ -261,6 +280,10 @@ public class startPage {
 			}
 		}
 	}
+	/* Prints the users wish list of items
+	 * @param none
+	 * @returns none
+	 */
 	private static void viewWishlist()
 	{
 		if( isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
@@ -275,6 +298,10 @@ public class startPage {
 			makeUserLookAtThisMessageLoop(currentUser.wishList.get(i).toString());
 		}
 	}
+	/* Checks if a user has any items they have not returned by the due date, if so, add to the users fee an appropriate amount
+	 * @param none
+	 * @returns none
+	 */
 	public static void applyFees()
 	{
 		if(feesAppliedThisUser == false && currentUser != null)
@@ -292,6 +319,10 @@ public class startPage {
 		}
 	
 	}
+	/* Checks if a user has any items on hold that can now be checked out, if so the user is alerted.
+	 * @param none
+	 * @returns none
+	 */
 	public static void checkForHolds()
 	{
 		if(checkedForAvailableHolds == false && currentUser != null)
@@ -309,6 +340,10 @@ public class startPage {
 			checkedForAvailableHolds = true;
 		}
 	}
+	/* If a child account is of age to become a patron account, turns that child account into a patron account.
+	 * @param none
+	 * @returns none
+	 */
 	public static void updateAccountTypes()
 	{
 		for( int i = 0; i < userDatabase.database.size(); i++)
@@ -322,6 +357,10 @@ public class startPage {
 			}
 		}
 	}
+	/* Allows an admin to add a copy of an item to the item database
+	 * @param none
+	 * @returns none
+	 */
 	public static void addAnItem()
 	{
 		
@@ -335,6 +374,10 @@ public class startPage {
 		itemDatabase.database.get(userChoice-1).addCopy();
 		makeUserLookAtThisMessageLoop("Successfully added a copy to " + itemDatabase.database.get(userChoice-1).getTitle());
 	}
+	/* Allows an admin to remove a user from the user database
+	 * @param none
+	 * @returns none
+	 */
 	public static void removeUser()
 	{
 		if(userDatabase.database.size() == 0) { makeUserLookAtThisMessageLoop("The user database is empty\nNo users to remove"); return;}
@@ -348,6 +391,10 @@ public class startPage {
 		makeUserLookAtThisMessageLoop("Successfully removed " + userDatabase.database.get(userChoice-1).getName() + "!");
 		userDatabase.database.remove(userDatabase.database.get(userChoice-1));
 	}
+	/* Prints all known account info for a user except password
+	 * @param none
+	 * @returns none
+	 */
 	public static void viewUserAcctInfo()
 	{
 		if(userDatabase.database.size() == 0) { makeUserLookAtThisMessageLoop("The user database is empty\nNo users to view"); return;}
@@ -361,6 +408,10 @@ public class startPage {
 		userDatabase.database.get(userChoice-1).display();
 		makeUserLookAtThisMessageLoop("");
 	}
+	/* Allows a admin to place a flag on a user.
+	 * @param none
+	 * @returns none
+	 */
 	public static void flagUser()
 	{
 		if(userDatabase.database.size() == 0) { makeUserLookAtThisMessageLoop("The user database is empty\nNo users to flag"); return;}
@@ -375,8 +426,7 @@ public class startPage {
 		userDatabase.database.get(userChoice-1).setFlagged(true);
 		makeUserLookAtThisMessageLoop(userDatabase.database.get(userChoice-1).getName() + " has been flagged");
 	}
-	//Helper Methods ----------------------------------------------------------------------------
-	//these are static so feel free to use these where ever they would help!
+	//General Use Methods ----------------------------------------------------------------------------
 	
 	/* Returns date in String in this format: yyyy/dd/MM HH:mm:ss
 	 * @param none
@@ -388,6 +438,10 @@ public class startPage {
 		String date = dateTime.getYear() + "/" + dateTime.getMonthOfYear() + "/" + dateTime.getDayOfMonth();
 		return date;
 	}
+	/* Determines the due date of a given item
+	 * @param A item
+	 * @returns a String of the date the item is due.
+	 */
 	public static String getDueDate(baseItem thisItem)
 	{
 		DateTime dateTime = new DateTime();
@@ -426,7 +480,7 @@ public class startPage {
 	}
 	/* displays a set of choices in a easy to read format 
 	 * @param an array of strings (choices for the user to pick from)
-	 * @returns the users integer choice
+	 * @returns the choices in a single string
 	 */
 	public static String choiceSetup(String[] choices)
 	{
@@ -437,6 +491,10 @@ public class startPage {
 		}
 		return choiceDialogue;
 	}
+	/* displays a set of choices in a easy to read format with additional information about the choices.
+	 * @param an array of strings (choices for the user to pick from), an array of special info on each choice to also be displayed
+	 * @returns the choices in a single string with additional info about each choice
+	 */
 	public static String choiceSetupAndPrintSpecial(String[] choices, String[] special)
 	{
 		String choiceDialogue = "Please select a choice\n\n";
@@ -446,7 +504,10 @@ public class startPage {
 		}
 		return choiceDialogue;
 	}
-	
+	/* Changes the current user to a given user
+	 * @param A user
+	 * 
+	 */
 	public static void changeToCurrentUser(baseUser thisUser)
 	{
 		currentUser = thisUser;
