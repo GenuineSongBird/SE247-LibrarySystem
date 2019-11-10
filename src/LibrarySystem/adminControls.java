@@ -14,7 +14,7 @@ public class adminControls {
 	 */
 	public static String[] adminChoicesArray()
 	{
-		String[] choices = {"Add a user", "Remove a User","Add an item","Remove an item","Change a user account's type","View a user account's info","Flag a user account"};
+		String[] choices = {"Add a user", "Remove a User","Add an item","View a user account's info","Flag a user account","Change a user account's type"};
 		return choices;
 	}
 }
