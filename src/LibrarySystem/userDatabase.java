@@ -96,29 +96,30 @@ public class userDatabase {
 				
 				if(userType.equalsIgnoreCase("Patron"))
 				{
+					
 					userPatron userAccount = new userPatron(name,age,phoneNum,address,email,accNum, feeTotal,password);
 					database.add(userAccount);
 				}
 				
-				if(userType.equalsIgnoreCase("Admin"))
+				else if(userType.equalsIgnoreCase("Admin"))
 				{
 					userAdmin userAccount = new userAdmin(name,age,phoneNum,address,email,accNum, feeTotal,password);
 					database.add(userAccount);
 				}
 				
-				if(userType.equalsIgnoreCase("Librarian"))
+				else if(userType.equalsIgnoreCase("Librarian"))
 				{
 					userLibrarian userAccount = new userLibrarian(name,age,phoneNum,address,email,accNum, feeTotal,password);
 					database.add(userAccount);
 				}
 				
-				if(userType.equalsIgnoreCase("Teacher"))
+				else if(userType.equalsIgnoreCase("Teacher"))
 				{
 					userTeacher userAccount = new userTeacher(name,age,phoneNum,address,email,accNum, feeTotal,password);
 					database.add(userAccount);
 				}
 				
-				if(userType.equalsIgnoreCase("Child"))
+				else if(userType.equalsIgnoreCase("Child"))
 				{
 					userChild userAccount = new userChild(name,age,phoneNum,address,email,accNum, feeTotal,password);
 					database.add(userAccount);
