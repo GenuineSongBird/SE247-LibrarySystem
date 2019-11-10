@@ -69,7 +69,7 @@ public class loginPage {
 		{
 			if(name.equalsIgnoreCase(userDatabase.database.get(i).getName())) //if the names match
 			{
-				if(password.equalsIgnoreCase(userDatabase.database.get(i).getPassword())) //if the names match
+				if(password.equalsIgnoreCase(userDatabase.database.get(i).getPassword())) //if the passwords match
 				{
 					System.out.println("Login successful!");
 					startPage.changeToCurrentUser(userDatabase.database.get(i));
