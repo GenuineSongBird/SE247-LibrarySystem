@@ -250,7 +250,8 @@ public abstract class baseUser {
 					"\nAddress		  "+ this.address +
 					"\nEmail:		  "+ this.email +
 					"\nAccount Number: "+ this.accNum +
-					"\nFee Total:	  "+ this.feeTotal);
+					"\nFee Total:	  "+ this.feeTotal +
+					"\nType: "+this.getType());
 	}
 	
 }
