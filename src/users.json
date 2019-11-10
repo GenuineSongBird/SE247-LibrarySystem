@@ -9,7 +9,7 @@
     "email":"rwhite@gmail.com",
     "phone":"803-565-4433",
     "accountId":1,
-    "type":"Librarian",
+    "type":"Admin",
     "fines": 0.0
   },{
   	"id":2,
@@ -33,7 +33,7 @@
     "email":"jhudson@yahoo.com",
     "phone":"803-555-4545",
     "accountId":3,
-    "type":"Patron",
+    "type":"Admin",
     "fines":7.2
   },{
   	"id":4,
@@ -45,7 +45,7 @@
     "email":"bwilson@gmail.com",
     "phone":"803-232-7788",
     "accountId":4,
-    "type":"Patron",
+    "type":"Admin",
     "fines":0.0
   },{
   	"id":5,
@@ -57,7 +57,7 @@
     "email":"jwilson@gmail.com",
     "phone":"803-945-3388",
     "accountId":4,
-    "type":"Patron",
+    "type":"Librarian",
     "fines":0.0
   }
   {
