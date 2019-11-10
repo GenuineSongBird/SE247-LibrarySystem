@@ -11,7 +11,11 @@ package LibrarySystem;
 
 public class extendedLimit implements checkoutLimitBehavior{
 	
-public int checkoutLimit() {
+	/**
+	 * Returns the checkout standard for the user
+	 * 30 is the extended limit defined by the library
+	 */
+	public int checkoutLimit() {
 		return 30;
 	}
 	
