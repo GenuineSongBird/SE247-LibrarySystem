@@ -1,3 +1,13 @@
+/*
+ * This class is a singleton userDatabase to
+ * store and read user class objects
+ * It is called primarily by start page
+ * for instantiation and uses
+ *
+ * Team: Untitled: Nick Bautista, Tyson Medlin, Luis Canales
+ * Main programmer(s) of this class: Luis Canales 
+ * Date: 10/28/2019
+ */
 package LibrarySystem;
 
 import java.util.Iterator;
@@ -10,23 +20,37 @@ import org.json.simple.parser.JSONParser;
 
 public class userDatabase {
 	
+	/**
+	 * Attributes of the userDatabse 
+	 */
 	private static final String USER_FILE_NAME = "src/users.json";
 	
 	private static userDatabase userDatabase;
 	
 	public static LinkedList<baseUser> database = new LinkedList<baseUser>(); 
 	
-	private userDatabase() {
-		loadDatabase();
-		//if no database found
-	}
-	
+	/**
+	 * Ensures that only one userDatabase may be instantiated
+	 * @return
+	 */
 	public static userDatabase getInstance() {
 	if (userDatabase == null) {
 		userDatabase = new userDatabase();
 		}
 	return userDatabase;
 	}
+	
+	/**
+	 * Create user method that allows for a Patron class to be created
+	 * Child is created if the age is set to below 16
+	 * @param name
+	 * @param age
+	 * @param phoneNum
+	 * @param address
+	 * @param email
+	 * @param password
+	 * @return
+	 */
 	public baseUser createUser(String name, int age, String phoneNum, String address, String email, String password)
 	{
 		//String name, int age, int phoneNum,String address, String email, int accNum, double feeTotal,String password)
@@ -43,13 +67,16 @@ public class userDatabase {
 		return thisUser;
 	}
 	
-	
-	
-	public void loadDatabase()
+	/**
+	 * user database object
+	 * takes in a JSON USER_FILE_NAME in order to populate database
+	 * populates userdatabase with user objects defined and seperated by type
+	 */
+	private userDatabase()
 	{
 		try {
 			FileReader reader = new FileReader(USER_FILE_NAME);
-			JSONParser parser = new JSONParser();
+			//JSONParser parser = new JSONParser();
 			JSONObject jsonData = (JSONObject)new JSONParser().parse(reader);
 			JSONArray usersJSON = (JSONArray)jsonData.get("users");
 
@@ -106,10 +133,20 @@ public class userDatabase {
 		}
 		
 	}
+	
+	/**
+	 * returns size of database
+	 * @return size
+	 */
 	public int getSize()
 	{
 		return database.size();
 	}
+	
+	/**
+	 * returns the current iteration of database
+	 * @return iterator
+	 */
 	public static Iterator<baseUser> returnIterator()
 	{
 		return database.iterator();
