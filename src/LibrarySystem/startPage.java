@@ -8,11 +8,13 @@
  */
 package LibrarySystem;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
 import org.joda.time.DateTime; //Is used for easier data management
+import org.joda.time.format.DateTimeFormat;
 
 
 
@@ -27,19 +29,19 @@ public class startPage {
 		userDatabase.getInstance(); //Prints out all loaded users in user database upon program start.
 		Scanner key = new Scanner(System.in);
 		boolean exitProgram = false;
-		updateAccountTypes(); //Checks if a child account is of age to become a patron account, turns that child account into a patron account.
-		String[] choices = {"Login or create account","Logout","Browse available items","View fees","Pay fees","Return item","View holds","View wishlist","View checked out items"};
-		if(currentUser != null && (currentUser.getType().equalsIgnoreCase("Admin"))) //If the current user is an admin display additional choices
-		{
-			choices = Stream.concat(Arrays.stream(choices), Arrays.stream(adminControls.adminChoicesArray())).toArray(String[]::new);
-		}
-		if(currentUser != null && (currentUser.getType().equalsIgnoreCase("Librarian")))  //If the current user is a librarian display additional choices
-		{
-			choices = Stream.concat(Arrays.stream(choices), Arrays.stream(librarianControls.librarianChoicesArray())).toArray(String[]::new);
-		}
+		//updateAccountTypes(); //Checks if a child account is of age to become a patron account, turns that child account into a patron account.
 		//The home screen
 		while( exitProgram == false ) //infinite menu loop, user interaction begins here.
 		{
+			String[] choices = {"Login or create account","Logout","Browse available items","View fees","Pay fees","Return item","View holds","View wishlist","View checked out items"};
+			if(currentUser != null && (currentUser.getType().equalsIgnoreCase("Admin"))) //If the current user is an admin display additional choices
+			{
+				choices = Stream.concat(Arrays.stream(choices), Arrays.stream(adminControls.adminChoicesArray())).toArray(String[]::new);
+			}
+			if(currentUser != null && (currentUser.getType().equalsIgnoreCase("Librarian")))  //If the current user is a librarian display additional choices
+			{
+				choices = Stream.concat(Arrays.stream(choices), Arrays.stream(librarianControls.librarianChoicesArray())).toArray(String[]::new);
+			}
 			applyFees();
 			checkForHolds();
 			System.out.println(getTitle());
@@ -308,9 +310,13 @@ public class startPage {
 		{
 			DateTime dateTime = new DateTime();
 			for(int i = 0; i < currentUser.checkedOutList.size(); i++)
-			{
-				if(dateTime.isAfter(Long.valueOf(currentUser.checkedOutList.get(i).getDueDate())))
+			{	
+				DateTime dueDate = new DateTime();
+				org.joda.time.format.DateTimeFormatter fmt = DateTimeFormat.forPattern("YYYY/MM/dd"); 
+				dueDate = DateTime.parse(currentUser.checkedOutList.get(i).getDueDate(), fmt);
+				if(dateTime.isAfter(dueDate))
 				{
+					
 					currentUser.addToFeeTotal(0.01);
 				}
 			}
