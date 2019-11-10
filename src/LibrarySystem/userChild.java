@@ -11,6 +11,18 @@ package LibrarySystem;
 
 public class userChild extends baseUser {
 	
+	/**
+	 * Constructor for userChild, calls super for baseUser class
+	 * Calls Restricted Limit
+	 * @param name
+	 * @param age
+	 * @param phoneNum
+	 * @param address
+	 * @param email
+	 * @param accNum
+	 * @param feeTotal
+	 * @param password
+	 */
 	public userChild(String name, int age, String phoneNum,
 			String address, String email, int accNum, double feeTotal,
 			String password) {
@@ -19,10 +31,18 @@ public class userChild extends baseUser {
 		
 	}
 	
+	/**
+	 * Displays user information from parent class
+	 * States User type when displaying user information
+	 */
 	public void display() {
 		System.out.println(this.getName()+" is a child");
 		super.display();
 	}
+	
+	/**
+	 * sets the account type that is called by startPage
+	 */
 	public String getType()
 	{
 		return "Child";
