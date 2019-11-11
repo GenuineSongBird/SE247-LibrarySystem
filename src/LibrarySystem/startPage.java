@@ -472,7 +472,7 @@ public class startPage {
 	 */
 	public static String getTitle()
 	{
-		String title = "---------------------\nUntitled Library System\n---------------------";
+		String title = "----------------------\nPortia Plante Library of Excellence\n----------------------";
 		return title;
 	}
 	/* Prints a line of the same size each time.
