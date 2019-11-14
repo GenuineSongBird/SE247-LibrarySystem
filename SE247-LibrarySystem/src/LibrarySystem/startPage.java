@@ -514,9 +514,10 @@ public class startPage {
 	 * @param A user
 	 * 
 	 */
-	public static void changeToCurrentUser(baseUser thisUser)
+	public static baseUser changeToCurrentUser(baseUser thisUser)
 	{
 		currentUser = thisUser;
+		return currentUser;
 	}
 	/* Checks if the user is logged in. 
 	 * @param none
