@@ -548,7 +548,7 @@ public class startPage {
 	 * @param a message to display to the user
 	 * @returns none
 	 */
-	public static void makeUserLookAtThisMessageLoop( String message )
+	public static String makeUserLookAtThisMessageLoop( String message )
 	{
 		Scanner key = new Scanner(System.in);
 		String choice = "2";
@@ -557,5 +557,6 @@ public class startPage {
 			System.out.println("Return to main menu?. \n1. Yes\n2. No");
 		choice = key.nextLine();
 		}
+		return message + "\nReturn to main menu?. \n1. Yes\n2. No";
 	}
 }
