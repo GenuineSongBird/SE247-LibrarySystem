@@ -1,15 +1,15 @@
 package Tests;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import LibrarySystem.startPage;
 
-class choiceSetupTest {
+public class ChoiceSetupTest {
 
 	@Test
-	void test() {
+	public void test() {
 		startPage test = new startPage();
 		String[] choices = {"Choice 1","Choice 2","Choice 3","Choice 4"};
 		String output = test.choiceSetup(choices);
@@ -17,3 +17,4 @@ class choiceSetupTest {
 	}
 
 }
+
