@@ -63,6 +63,10 @@ public abstract class baseUser {
 	public void checkoutLimit() {
 		CheckoutLimitBehavior.checkoutLimit();
 	}
+	public int checkedOutListSize()
+	{
+		return checkedOutList.size();
+	}
 	
 	/**
 	 * Sets the Checkout Limit Behavior equal to inputed behavior

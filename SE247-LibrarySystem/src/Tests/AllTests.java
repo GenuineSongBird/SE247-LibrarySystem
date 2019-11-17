@@ -25,7 +25,21 @@ import org.junit.runners.Suite.SuiteClasses;
 	ApplyFeesTest.class,
 	ViewWishlistTest.class,
 	ViewHoldsTest.class,
-	PayFeeTest.class
+	PayFeeTest.class,
+	ReturnItemTest.class,
+	ViewFeeTest.class,
+	LogoutTest.class,
+	LoginTest.class,
+	GetUserChoiceTest.class,
+	GetUserChoiceAndPrintSpecialTest.class,
+	CreateNewUserTest.class,
+	LibrarianChoicesArrayTest.class,
+	AdminChoicesArrayTest.class,
+	SearchByTitleTest.class,
+	SearchByYearTest.class,
+	SearchByGenreTest.class,
+	SearchByDescriptionTest.class,
+	SearchByRatingTest.class,
 	})
 public class AllTests {
 

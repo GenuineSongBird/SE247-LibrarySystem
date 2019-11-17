@@ -125,7 +125,7 @@ public class browsePage {
 	 * @param String of the title the user would like to search with
 	 * @returns none
 	 */
-	public void searchByTitle( String title )
+	public String searchByTitle( String title )
 	{
 		itemDatabase.getInstance();
 		
@@ -141,7 +141,7 @@ public class browsePage {
 		if(results.size() == 0)
 		{
 			startPage.makeUserLookAtThisMessageLoop("No results found with title of " + title);
-			return;
+			return "";
 		}
 		String[] resultsTitle = new String[results.size()];
 		for(int i = 0; i < results.size(); i++) 
@@ -151,12 +151,13 @@ public class browsePage {
 		choice = startPage.getUserChoice(resultsTitle, results.size());
 		itemDetailPage itemDetailPage = new itemDetailPage();
 		itemDetailPage.getDetails(results.get(choice - 1));
+		return results.get(choice - 1).toString();
 	}
 	/* Searches through the item database for results matching the users entered rating, displays appropriate results.
 	 * @param String of the rating the user would like to search with
 	 * @returns none
 	 */
-	public void searchByRating( String rating )
+	public String searchByRating( String rating )
 	{
 		itemDatabase.getInstance();
 		
@@ -172,7 +173,7 @@ public class browsePage {
 		if(results.size() == 0)
 		{
 			startPage.makeUserLookAtThisMessageLoop("No results found with rating of " + rating);
-			return;
+			return "";
 		}
 		String[] resultsTitle = new String[results.size()];
 		String[] resultsRating = new String[results.size()];
@@ -184,12 +185,13 @@ public class browsePage {
 		choice = startPage.getUserChoiceAndPrintSpecial(resultsTitle, results.size(), resultsRating);
 		itemDetailPage itemDetailPage = new itemDetailPage();
 		itemDetailPage.getDetails(results.get(choice-1));
+		return results.get(choice-1).toString();
 	}
 	/* Searches through the item database for results matching the users entered year of release, displays appropriate results.
 	 * @param String of the year the user would like to search with
 	 * @returns none
 	 */
-	public void searchByYear( String year )
+	public String searchByYear( String year )
 	{
 		itemDatabase.getInstance();
 		
@@ -205,7 +207,7 @@ public class browsePage {
 		if(results.size() == 0)
 		{
 			startPage.makeUserLookAtThisMessageLoop("No results found with release date of " + year);
-			return;
+			return "";
 		}
 		String[] resultsTitle = new String[results.size()];
 		String[] resultsYear = new String[results.size()];
@@ -217,12 +219,13 @@ public class browsePage {
 		choice = startPage.getUserChoiceAndPrintSpecial(resultsTitle, results.size(), resultsYear);
 		itemDetailPage itemDetailPage = new itemDetailPage();
 		itemDetailPage.getDetails(results.get(choice-1));
+		return results.get(choice-1).toString();
 	}
 	/* Searches through the item database for results matching the users entered genre, displays appropriate results.
 	 * @param String of the genre the user would like to search with
 	 * @returns none
 	 */
-	public void searchByGenre( String genre )
+	public String searchByGenre( String genre )
 	{
 		itemDatabase.getInstance();
 		
@@ -238,7 +241,7 @@ public class browsePage {
 		if(results.size() == 0)
 		{
 			startPage.makeUserLookAtThisMessageLoop("No results found with genre of " + genre);
-			return;
+			return "";
 		}
 		String[] resultsTitle = new String[results.size()];
 		String[] resultsGenre = new String[results.size()];
@@ -250,12 +253,13 @@ public class browsePage {
 		choice = startPage.getUserChoiceAndPrintSpecial(resultsTitle, results.size(), resultsGenre);
 		itemDetailPage itemDetailPage = new itemDetailPage();
 		itemDetailPage.getDetails(results.get(choice-1));
+		return results.get(choice-1).toString();
 	}
 	/* Searches through the item database for results matching the users entered description, displays appropriate results. Works through comparison of description text.
 	 * @param String of the description the user would like to search with
 	 * @returns none
 	 */
-	public void searchByDescription( String Description )
+	public String searchByDescription( String Description )
 	{
 		itemDatabase.getInstance();
 		
@@ -271,7 +275,7 @@ public class browsePage {
 		if(results.size() == 0)
 		{
 			startPage.makeUserLookAtThisMessageLoop("No results found with a description containing " + Description);
-			return;
+			return "";
 		}
 		String[] resultsTitle = new String[results.size()];
 		for(int i = 0; i < results.size(); i++) 
@@ -281,6 +285,7 @@ public class browsePage {
 		choice = startPage.getUserChoice(resultsTitle, results.size());
 		itemDetailPage itemDetailPage = new itemDetailPage();
 		itemDetailPage.getDetails(results.get(choice-1));
+		return results.get(choice-1).toString();
 	}
 	/* Allows the user to add a recommendation of their choice to a saved list of recommendations
 	 * @param none

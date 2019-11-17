@@ -143,7 +143,7 @@ public class startPage {
 	 * @param none
 	 * @returns none
 	 */
-	private static void login()
+	public static void login()
 	{
 		loginPage login = new loginPage();
 	}
@@ -151,7 +151,7 @@ public class startPage {
 	 * @param none
 	 * @returns none
 	 */
-	private static void logout()
+	public static void logout()
 	{
 		if( isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
 		{ return; }
@@ -171,22 +171,23 @@ public class startPage {
 	 * @param none
 	 * @returns none
 	 */
-	private static void viewFee()
+	public static String viewFee()
 	{
 		if( isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
-		{ return; }
+		{ return ""; }
 		String fees = String.valueOf(currentUser.getFeeTotal());
 		if(Double.valueOf(fees) == 0)
 			fees = "None";
 		else
 			fees = "$ " + fees;
 		makeUserLookAtThisMessageLoop("Fee Amount: "+ fees);
+		return fees;
 	}
 	/* Allows current user to return an item they have checked out.
 	 * @param none
 	 * @returns none
 	 */
-	private static void returnItem()
+	public static void returnItem()
 	{
 		if( isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
 		{  return; }
@@ -570,5 +571,9 @@ public class startPage {
 			}
 		
 		return message + "\nReturn to main menu?. \n1. Yes\n2. No";
+	}
+	public static baseUser getCurrentUser()
+	{
+		return currentUser;
 	}
 }
