@@ -40,6 +40,9 @@ import org.junit.runners.Suite.SuiteClasses;
 	SearchByGenreTest.class,
 	SearchByDescriptionTest.class,
 	SearchByRatingTest.class,
+	AddToRequestListTest.class,
+	ViewNewReleasesTest.class,
+	GatherSearchByInfoTest.class
 	})
 public class AllTests {
 

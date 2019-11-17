@@ -62,7 +62,7 @@ public class browsePage {
 	 * @param The string information the user would like to search the item database with.
 	 * @returns the string items in the item database matching the users desires.
 	 */
-	private String gatherSearchByInfo( String thisInfo )
+	public String gatherSearchByInfo( String thisInfo )
 	{
 		Scanner key = new Scanner(System.in);
 		String gatheredInfo = "";
@@ -95,10 +95,11 @@ public class browsePage {
 	 * @param none
 	 * @returns none
 	 */
-	public void viewNewReleases()
+	public String[] viewNewReleases()
 	{	
 		int choice = 0;
 		LinkedList<baseItem> results = new LinkedList<baseItem>();
+		String[] resultsTitle = new String[results.size()];
 		for(int i = 0; i < itemDatabase.database.size(); i++)
 		{
 			if(itemDatabase.database.get(i).isNew() == true)
@@ -109,9 +110,9 @@ public class browsePage {
 		if(results.size() == 0)
 		{
 			startPage.makeUserLookAtThisMessageLoop("No new releases found");
-			return;
+			return resultsTitle;
 		}
-		String[] resultsTitle = new String[results.size()];
+		resultsTitle = new String[results.size()];
 		for(int i = 0; i < results.size(); i++) 
 		{ 
 			resultsTitle[i] = results.get(i).getTitle();
@@ -119,6 +120,7 @@ public class browsePage {
 		choice = startPage.getUserChoice(resultsTitle, results.size());
 		itemDetailPage itemDetailPage = new itemDetailPage();
 		itemDetailPage.getDetails(results.get(choice - 1));
+		return resultsTitle;
 		
 	}
 	/* Searches through the item database for results matching the users entered title, displays appropriate results.
@@ -291,10 +293,10 @@ public class browsePage {
 	 * @param none
 	 * @returns none
 	 */
-	public void addToRequestList() 
+	public boolean addToRequestList() 
 	{
 		if( startPage.isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
-		{  return; }
+		{  return false; }
 		Scanner key = new Scanner(System.in);
 		System.out.println("Please enter the title and year of the item you would like to add\n\nTitle:");
 		String title = key.nextLine();
@@ -312,5 +314,6 @@ public class browsePage {
 			e.printStackTrace();
 		}
 		startPage.makeUserLookAtThisMessageLoop("Your request has been added for consideration.\nThank you");
+		return true;
 	}
 }
