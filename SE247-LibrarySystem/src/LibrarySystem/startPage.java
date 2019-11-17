@@ -223,7 +223,7 @@ public class startPage {
 	 * @param none
 	 * @returns none
 	 */
-	private static void payFee()
+	public static void payFee()
 	{
 		if( isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
 		{ return; }
@@ -263,11 +263,12 @@ public class startPage {
 	 * @param none
 	 * @returns none
 	 */
-	private static void viewHolds()
+	public static String viewHolds()
 	{
 		if( isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
-		{ return; }
+		{ return ""; }
 		boolean foundOne = false;
+		String output = "";
 		for(int i = 0; i < itemDatabase.database.size(); i++)
 		{
 			if(itemDatabase.database.get(i).getHolds().contains(currentUser))
@@ -275,30 +276,36 @@ public class startPage {
 				System.out.println(itemDatabase.database.get(i).toString());
 				makeUserLookAtThisMessageLoop("");
 				foundOne = true;
+				output = output + itemDatabase.database.get(i).toString();
 			}
 			else if(i == itemDatabase.database.size()-1 && foundOne == false)
 			{
 				makeUserLookAtThisMessageLoop("There are no holds currently for " + currentUser.getName());
+				return "";
 			}
 		}
+		return output;
 	}
 	/* Prints the users wish list of items
 	 * @param none
 	 * @returns none
 	 */
-	private static void viewWishlist()
+	public static String viewWishlist()
 	{
+		String WishlistOutput = "";
 		if( isUserLoggedInLoop() == false) //If user is not logged in, make the acknowledge that, then return to home.
-		{ return; }
+		{ return ""; }
 		if(currentUser.wishList.size() == 0)
 		{
 			makeUserLookAtThisMessageLoop("There are no items on " + currentUser.getName() + "'s wishlist");
-			return;
+			return "";
 		}
 		for(int i = 0; i < currentUser.wishList.size(); i++)
 		{
 			makeUserLookAtThisMessageLoop(currentUser.wishList.get(i).toString());
+			WishlistOutput = WishlistOutput + currentUser.wishList.get(i).toString();
 		}
+		return WishlistOutput;
 	}
 	/* Checks if a user has any items they have not returned by the due date, if so, add to the users fee an appropriate amount
 	 * @param none

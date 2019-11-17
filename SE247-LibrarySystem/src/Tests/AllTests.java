@@ -21,7 +21,11 @@ import org.junit.runners.Suite.SuiteClasses;
 	RemoveUserTest.class,
 	AddAnItemTest.class,
 	UpdateAccountTypesTest.class,
-	CheckForHoldsTest.class
+	CheckForHoldsTest.class,
+	ApplyFeesTest.class,
+	ViewWishlistTest.class,
+	ViewHoldsTest.class,
+	PayFeeTest.class
 	})
 public class AllTests {
 
