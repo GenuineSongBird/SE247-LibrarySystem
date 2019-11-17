@@ -15,7 +15,13 @@ import org.junit.runners.Suite.SuiteClasses;
 	GetLineTest.class,
 	GetTitleTest.class,
 	GetDueDateTest.class,
-	GetDateTest.class
+	GetDateTest.class,
+	FlagUserTest.class,
+	ViewUserAcctInfoTest.class,
+	RemoveUserTest.class,
+	AddAnItemTest.class,
+	UpdateAccountTypesTest.class,
+	CheckForHoldsTest.class
 	})
 public class AllTests {
 

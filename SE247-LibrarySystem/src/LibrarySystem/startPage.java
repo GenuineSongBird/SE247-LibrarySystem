@@ -329,7 +329,7 @@ public class startPage {
 	 * @param none
 	 * @returns none
 	 */
-	public static void checkForHolds()
+	public static boolean checkForHolds()
 	{
 		if(checkedForAvailableHolds == false && currentUser != null)
 		{
@@ -344,7 +344,9 @@ public class startPage {
 				
 			}
 			checkedForAvailableHolds = true;
+			return true;
 		}
+		return false;
 	}
 	/* If a child account is of age to become a patron account, turns that child account into a patron account.
 	 * @param none
@@ -401,9 +403,9 @@ public class startPage {
 	 * @param none
 	 * @returns none
 	 */
-	public static void viewUserAcctInfo()
+	public static boolean viewUserAcctInfo()
 	{
-		if(userDatabase.database.size() == 0) { makeUserLookAtThisMessageLoop("The user database is empty\nNo users to view"); return;}
+		if(userDatabase.database.size() == 0) { makeUserLookAtThisMessageLoop("The user database is empty\nNo users to view"); return false;}
 		System.out.println("Please choose the account to view");
 		String[] allItems = new String[userDatabase.database.size()];
 		for(int i = 0; i < userDatabase.database.size(); i++)
@@ -413,14 +415,15 @@ public class startPage {
 		int userChoice = getUserChoice(allItems, allItems.length);
 		userDatabase.database.get(userChoice-1).display();
 		makeUserLookAtThisMessageLoop("");
+		return true;
 	}
 	/* Allows a admin to place a flag on a user.
 	 * @param none
 	 * @returns none
 	 */
-	public static void flagUser()
+	public static boolean flagUser()
 	{
-		if(userDatabase.database.size() == 0) { makeUserLookAtThisMessageLoop("The user database is empty\nNo users to flag"); return;}
+		if(userDatabase.database.size() == 0) { makeUserLookAtThisMessageLoop("The user database is empty\nNo users to flag"); return false;}
 		System.out.println("Please choose the account to flag");
 		String[] allItems = new String[userDatabase.database.size()];
 		for(int i = 0; i < userDatabase.database.size(); i++)
@@ -431,6 +434,7 @@ public class startPage {
 		userDatabase.database.get(userChoice-1).display();
 		userDatabase.database.get(userChoice-1).setFlagged(true);
 		makeUserLookAtThisMessageLoop(userDatabase.database.get(userChoice-1).getName() + " has been flagged");
+		return true;
 	}
 	//General Use Methods ----------------------------------------------------------------------------
 	
@@ -552,11 +556,12 @@ public class startPage {
 	{
 		Scanner key = new Scanner(System.in);
 		String choice = "2";
-		while(choice.equalsIgnoreCase("1") == false) {
-			System.out.println(message);
-			System.out.println("Return to main menu?. \n1. Yes\n2. No");
-		choice = key.nextLine();
-		}
+			while(choice.equalsIgnoreCase("1") == false) {
+				System.out.println(message);
+				System.out.println("Return to main menu?. \n1. Yes\n2. No");
+			choice = key.nextLine();
+			}
+		
 		return message + "\nReturn to main menu?. \n1. Yes\n2. No";
 	}
 }
