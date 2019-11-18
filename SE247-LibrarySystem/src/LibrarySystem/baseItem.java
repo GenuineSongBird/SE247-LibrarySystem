@@ -83,7 +83,8 @@ public abstract class baseItem {
 		 * -1 to an item's copies available.
 		 */
 		public void subtractCopy() {
-			this.numCopies--;
+			if(numCopies > 0)
+				this.numCopies--;
 		}
 		
 		/**

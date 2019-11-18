@@ -59,7 +59,8 @@ public class itemDVD extends baseItem {
 	 * @param anActor
 	 */
 	public void addActor(String anActor) {
-		actors.add(anActor);}
+		actors.add(anActor);
+	}
 
 	/**
 	 * Getter for the type of the item.

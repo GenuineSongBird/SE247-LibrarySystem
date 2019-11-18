@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>Library System</name>
+	<name>SE247-LibrarySystem</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -14,11 +14,4 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
-	<linkedResources>
-		<link>
-			<name>LibrarySystem</name>
-			<type>2</type>
-			<location>D:/Java Code/Library System/SE247-LibrarySystem/src/LibrarySystem</location>
-		</link>
-	</linkedResources>
 </projectDescription>
