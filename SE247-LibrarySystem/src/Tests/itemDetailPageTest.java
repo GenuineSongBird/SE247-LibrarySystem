@@ -1,4 +1,4 @@
-package LibrarySystem;
+package Tests;
 
 import static org.junit.Assert.*;
 import static org.junit.contrib.java.lang.system.TextFromStandardInputStream.*;
@@ -10,6 +10,10 @@ import LibrarySystem.startPage;
 import LibrarySystem.itemBook;
 import LibrarySystem.baseItem;
 import LibrarySystem.itemDetailPage;
+import LibrarySystem.userPatron;
+import LibrarySystem.itemDatabase;
+import LibrarySystem.userDatabase;
+import LibrarySystem.baseUser;
 import LibrarySystem.userPatron;
 
 public class itemDetailPageTest {
@@ -133,5 +137,36 @@ public class itemDetailPageTest {
 		
 	}
 	
+	@Test
+	public void testViewComments() {
+		itemDatabase.database.clear();
+		baseItem bookItem = new itemBook("Title", "Genre", 0, 0, true, "Author");
+		bookItem.getRatingComments().add("Test" + " says: \"" + "Awsome" + "\"");
+		itemDatabase.database.add(bookItem);
+		String comment = "Test says: \"Awsome\"";
+		assertEquals(bookItem.getRatingComments().getFirst(), comment);
+	}
 	
+	@Test
+	public void testViewHoldList() {
+		startPage SP = new startPage();
+		itemDetailPage IDP = new itemDetailPage();
+		itemDatabase.database.clear();
+		userDatabase.database.clear();
+		baseItem bookItem = new itemBook("Title", "Genre", 0, 0, true, "Author");
+		baseUser patronUser = new userPatron("Name", 18, "1", "1", "1", 1, 0, "1");
+		userDatabase.database.add(patronUser);
+		itemDatabase.database.add(bookItem);
+		bookItem.setHolds(patronUser);
+		systemInMock.provideLines("1","Name","1");
+		SP.login();
+		bookItem.setHolds(patronUser);
+		systemInMock.provideLines("1","7");
+		assertNotNull(bookItem.getHolds());
+	}
+	
+	@Test
+	public void testGetDetails() {
+		
+	}
 }
