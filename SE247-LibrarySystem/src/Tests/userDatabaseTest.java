@@ -3,7 +3,7 @@ package LibrarySystem;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import org junit.Rule;
+import org.junit.Rule;
 
 import LibrarySystem.userChild;
 import LibrarySystem.userDatabase;
